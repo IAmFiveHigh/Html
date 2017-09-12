@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PhotoSwipe</title>
+    <style>
+        #photoBower {
+            position: fixed;
+            z-index: 2;
+            display: none;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<!--我看过的@3x.png-->
+<!--我的.png-->
+<img  id='image' src="壁纸.jpg" class="min" width="100px" height="100px">
+
+<img  id="photoBower">
+
+<script src="jquery.min.js"></script>
+<script>
+
+    var img = document.getElementById("image")
+    img.onload = function() {
+
+        img.dataset.realWidth = img.naturalWidth
+        img.dataset.realHeight = img.naturalHeight
+
+
+        img.onclick = function () {
+            addClickFunction(this.dataset.realWidth, this.dataset.realHeight, this.src)
+        }
+    }
+
+    var photoBower = document.getElementById("photoBower")
+    photoBower.onclick = function () {
+
+        this.style.display = "none"
+    }
+
+    function addClickFunction(width, height, src) {
+
+        photoBower.src =  src
+
+        var clientWidth = document.documentElement.clientWidth
+        var clientHeight = document.documentElement.clientHeight
+
+        var clientRatio = clientHeight / clientWidth
+
+        var ratio =  height / width
+
+        var finishWidth, finishHeight
+
+        if (ratio > clientRatio) {
+
+            if (height > clientHeight) {
+                finishHeight = clientHeight
+            }else {
+                finishHeight = height
+            }
+
+            finishWidth = finishHeight / ratio
+        }else {
+
+            if (width > clientWidth) {
+                finishWidth = clientWidth
+            }else {
+                finishWidth = width
+            }
+
+            finishHeight = finishWidth * ratio
+        }
+
+
+        photoBower.width = finishWidth
+        photoBower.height = finishHeight
+
+        photoBower.style.left = clientWidth / 2 - finishWidth / 2 + "px"
+        photoBower.style.top = clientHeight / 2 - finishHeight / 2 + "px"
+
+        photoBower.style.display = "block"
+    }
+
+    photoBower.addEventListener("touchstart", touch, false)
+
+    function touch(event) {
+
+        console.log(event.target)
+
+    }
+</script>
+</body>
+</html>
