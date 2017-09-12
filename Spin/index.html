@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+
+</head>
+<body>
+<div class="spin"></div>
+<div id="test" class="pinch">
+    <img src="壁纸.jpg">
+</div>
+
+<script type="text/javascript" src="spin.js"></script>
+<script>
+    //第一个参数为loading图标加载的标签，第二个为ajax的数据接口，第三个为回调函数。
+    function loadAjaxSpin(ele, get_url, callback) {
+        var opts = {
+            lines: 15, // 花瓣数目
+            length: 15, // 花瓣长度
+            width: 5, // 花瓣宽度
+            radius: 15, // 花瓣距中心半径
+            scale: 1,
+            corners: 1, // 花瓣圆滑度 (0-1)
+            color: '#FAFAFA', // 花瓣颜色
+            opacity: 0.25,
+            rotate: 0, // 花瓣旋转角度
+            direction: 1, // 花瓣旋转方向 1: 顺时针, -1: 逆时针
+            speed: 1, // 花瓣旋转速度
+            trail: 60, // 花瓣旋转时的拖影(百分比)
+            zIndex: 2e9, // spinner的z轴 (默认是2000000000)
+            className: 'spinner', // spinner css 样式名称
+            top: '50%', // spinner 相对父容器Top定位 单位 px
+            left: '50%', // spinner 相对父容器Left定位 单位 px
+            shadow: false, // 花瓣是否显示阴影
+            hwaccel: false, //spinner 是否启用硬件加速及高速旋转
+            position: 'absolute'
+        };
+        var spinner = new Spinner(opts);
+        $(".spin").show();
+        var target = $(".spin")[0];
+        spinner.spin(target);
+
+
+        setTimeout(function () {
+            $(ele).hide();
+        }, 5000)
+    }
+    var foo = function(data) {
+        console.log(data);
+    }
+    $(function() {
+        $('#test').on('click', function() {
+            loadAjaxSpin('.spin', 'https://www.baidu.com', foo);
+        });
+    });
+</script>
+
+</body>
+
+</html>
