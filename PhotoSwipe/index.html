@@ -16,6 +16,14 @@
             left: 0;
             transform-origin: center;
         }
+
+        #close {
+            position: fixed;
+            bottom: 0;
+            font-size: 15px;
+            color: #000;
+        }
+
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script type="text/javascript" src="js/cat.touchjs.js"></script>
@@ -64,8 +72,13 @@
 
         document.body.appendChild(contain)
 
-        contain.onclick = function () {
-            this.removeChild(document.getElementById("photoBower"))
+        var close = document.createElement("div")
+        var closeText = document.createTextNode("关闭图片")
+        close.appendChild(closeText)
+        document.body.appendChild(close)
+        close.id = "close"
+        close.onclick = function () {
+            document.getElementById("contain").removeChild(document.getElementById("photoBower"))
             document.body.removeChild(document.getElementById("contain"))
 
             var data = {
@@ -76,8 +89,8 @@
             };
             window.localStorage.cat_touchjs_data = JSON.stringify(data);
 
-
         }
+
 
         var clientWidth = document.documentElement.clientWidth
         var clientHeight = document.documentElement.clientHeight
