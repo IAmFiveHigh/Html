@@ -4,46 +4,80 @@
     <meta charset="UTF-8">
     <title>PhotoSwipe</title>
     <style>
-        #photoBower {
+        #contain {
             position: fixed;
             z-index: 2;
-            display: none;
+
+        }
+        #photoBower {
+            position: relative;
+
             top: 0;
             left: 0;
+            transform-origin: center;
         }
     </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="text/javascript" src="js/cat.touchjs.js"></script>
+    <script type="text/javascript" src="js/touch.min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 </head>
 <body>
 <!--我看过的@3x.png-->
 <!--我的.png-->
+
 <img  id='image' src="壁纸.jpg" class="min" width="100px" height="100px">
+<!--<div id="contain">-->
+    <!--<img id="photoBower" src="">-->
+<!--</div>-->
 
-<img  id="photoBower">
 
-<script src="jquery.min.js"></script>
 <script>
 
     var img = document.getElementById("image")
-    img.onload = function() {
+    touchImg(img)
 
-        img.dataset.realWidth = img.naturalWidth
-        img.dataset.realHeight = img.naturalHeight
+    function touchImg(img) {
+        img.onload = function() {
+
+            img.dataset.realWidth = img.naturalWidth
+            img.dataset.realHeight = img.naturalHeight
 
 
-        img.onclick = function () {
-            addClickFunction(this.dataset.realWidth, this.dataset.realHeight, this.src)
+            img.onclick = function () {
+                addClickFunction(this.dataset.realWidth, this.dataset.realHeight, this.src)
+            }
         }
-    }
 
-    var photoBower = document.getElementById("photoBower")
-    photoBower.onclick = function () {
 
-        this.style.display = "none"
     }
 
     function addClickFunction(width, height, src) {
 
-        photoBower.src =  src
+        var contain = document.createElement("div")
+        contain.id = "contain"
+
+        var photoBower = document.createElement("img")
+        photoBower.src = src
+        photoBower.id = "photoBower"
+        contain.appendChild(photoBower)
+
+        document.body.appendChild(contain)
+
+        contain.onclick = function () {
+            this.removeChild(document.getElementById("photoBower"))
+            document.body.removeChild(document.getElementById("contain"))
+
+            var data = {
+                left: 0,
+                top: 0,
+                scale: 1,
+                rotate: 0
+            };
+            window.localStorage.cat_touchjs_data = JSON.stringify(data);
+
+
+        }
 
         var clientWidth = document.documentElement.clientWidth
         var clientHeight = document.documentElement.clientHeight
@@ -75,22 +109,44 @@
         }
 
 
+        contain.width = finishWidth
+        contain.height = finishHeight
+
         photoBower.width = finishWidth
         photoBower.height = finishHeight
 
-        photoBower.style.left = clientWidth / 2 - finishWidth / 2 + "px"
-        photoBower.style.top = clientHeight / 2 - finishHeight / 2 + "px"
+        contain.style.left = clientWidth / 2 - finishWidth / 2 + "px"
+        contain.style.top = clientHeight / 2 - finishHeight / 2 + "px"
 
-        photoBower.style.display = "block"
+        console.log(contain.style.left)
+        console.log(contain.style.top)
+
+        addTouchEvent()
     }
 
-    photoBower.addEventListener("touchstart", touch, false)
 
-    function touch(event) {
+    function addTouchEvent() {
+        var $targetObj = $('#photoBower');
+        var contain = $('contain')
+        //初始化设置
+        cat.touchjs.init($targetObj, function (left, top, scale, rotate) {
+            $targetObj.css({
+                left: left,
+                top: top,
+                'transform': 'scale(' + scale + ') rotate(' + rotate + 'deg)',
+                '-webkit-transform': 'scale(' + scale + ') rotate(' + rotate + 'deg)'
+            });
+        });
+        //初始化拖动手势（不需要就注释掉）
+        cat.touchjs.drag($targetObj, function (left, top) {
 
-        console.log(event.target)
+        });
+        //初始化缩放手势（不需要就注释掉）
+        cat.touchjs.scale($targetObj, function (scale) {
 
+        });
     }
+
 </script>
 </body>
 </html>
