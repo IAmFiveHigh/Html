@@ -6,7 +6,7 @@
     <style>
         #contain {
             position: fixed;
-            z-index: 2;
+            z-index: 3;
 
         }
         #photoBower {
@@ -20,8 +20,18 @@
         #close {
             position: fixed;
             bottom: 0;
-            font-size: 15px;
-            color: #000;
+
+            font-size: 25px;
+            color: #FFFFFF;
+            z-index: 4;
+        }
+
+        .photoBowerShadow {
+            position: fixed;
+            background-color: black;
+            z-index: 2;
+            top: 0;
+            left: 0;
         }
 
     </style>
@@ -62,6 +72,13 @@
 
     function addClickFunction(width, height, src) {
 
+        var shadow = document.createElement("div")
+        shadow.className = "photoBowerShadow"
+
+        shadow.onclick = function () {
+            console.log("shadow")
+        }
+
         var contain = document.createElement("div")
         contain.id = "contain"
 
@@ -70,17 +87,17 @@
         photoBower.id = "photoBower"
         contain.appendChild(photoBower)
 
-        document.body.appendChild(contain)
+        shadow.appendChild(contain)
+        document.body.appendChild(shadow)
 
         var close = document.createElement("div")
         var closeText = document.createTextNode("关闭图片")
         close.appendChild(closeText)
-        document.body.appendChild(close)
+        shadow.appendChild(close)
+        document.body.appendChild(shadow)
         close.id = "close"
         close.onclick = function () {
-            document.getElementById("contain").removeChild(document.getElementById("photoBower"))
-            document.body.removeChild(document.getElementById("contain"))
-
+            document.body.removeChild(document.getElementsByClassName("photoBowerShadow")[0])
             var data = {
                 left: 0,
                 top: 0,
@@ -91,9 +108,12 @@
 
         }
 
-
         var clientWidth = document.documentElement.clientWidth
         var clientHeight = document.documentElement.clientHeight
+
+        close.style.left = clientWidth / 2 - close.offsetWidth / 2 + "px"
+        shadow.style.width = clientWidth + "px"
+        shadow.style.height = clientHeight + "px"
 
         var clientRatio = clientHeight / clientWidth
 
@@ -131,12 +151,8 @@
         contain.style.left = clientWidth / 2 - finishWidth / 2 + "px"
         contain.style.top = clientHeight / 2 - finishHeight / 2 + "px"
 
-        console.log(contain.style.left)
-        console.log(contain.style.top)
-
         addTouchEvent()
     }
-
 
     function addTouchEvent() {
         var $targetObj = $('#photoBower');
