@@ -6,3 +6,6 @@
 
 ### Spin
 - 加载动态小菊花指示器
+
+### TextView
+- 模仿textView
