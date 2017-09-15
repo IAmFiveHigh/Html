@@ -7,10 +7,11 @@ BeginX = 20
 
 const endDate = new Date(2017, 8, 16, 0, 0, 0)
 
+curentDistanceSec = 0
+
 window.onload = function() {
 
     main()
-    console.log(endDate)
 }
 
 function getCanvas() {
@@ -59,14 +60,50 @@ function main() {
 
     var context = getCanvas()
 
-    paintArc(BeginX, 200, 0,context)
-    paintArc(BeginX + 8 * (Radius + 1) * 2, 200, 1,context)   //时
-    paintArc(BeginX + 16 * (Radius + 1) * 2, 200, 10,context)   //冒号
-    paintArc(BeginX + (16 + 5) * (Radius + 1) * 2, 200, 3,context)
-    paintArc(BeginX + (16 + 5 + 8) * (Radius + 1) * 2, 200, 5,context)   //分
-    paintArc(BeginX + (16 + 5 + 16) * (Radius + 1) * 2, 200, 10,context)   //冒号
-    paintArc(BeginX + (16 + 5 + 16 + 5) * (Radius + 1) * 2, 200, 4,context)
-    paintArc(BeginX + (16 + 5 + 16 + 5 + 8) * (Radius + 1) * 2, 200, 1,context)   //秒
+
+    setInterval( function () {
+        render(context)
+        update()
+    }, 50)
+
+
+}
+
+function update() {
+
+    var nextShowTimeSeconds = getTimeDistanceSec();
+
+    // var nextHours = parseInt( nextShowTimeSeconds / 3600);
+    // var nextMinutes = parseInt( (nextShowTimeSeconds - nextHours * 3600) / 60 )
+    var nextSeconds = nextShowTimeSeconds % 60
+
+    // var curHours = parseInt( curentDistanceSec / 3600);
+    // var curMinutes = parseInt( (curentDistanceSec - curHours * 3600) / 60 )
+    var curSeconds = curentDistanceSec % 60
+
+    if( nextSeconds != curSeconds ){
+
+        curentDistanceSec = nextShowTimeSeconds;
+    }
+}
+
+function render(ctx) {
+
+    var finishTime = getTimeDistanceSec()
+    var hour = parseInt(finishTime / 3600)
+    var min = parseInt((finishTime - hour * 3600) / 60)
+    var sec = parseInt((finishTime - hour * 3600 - min * 60) % 60)
+
+    ctx.clearRect(0, 0, 1024, 768)
+
+    paintArc(BeginX, 200, parseInt(hour / 10),ctx)
+    paintArc(BeginX + 8 * (Radius + 1) * 2, 200, parseInt(hour % 10),ctx)   //时
+    paintArc(BeginX + 16 * (Radius + 1) * 2, 200, 10,ctx)   //冒号
+    paintArc(BeginX + (16 + 5) * (Radius + 1) * 2, 200, parseInt(min / 10),ctx)
+    paintArc(BeginX + (16 + 5 + 8) * (Radius + 1) * 2, 200, parseInt(min % 10),ctx)   //分
+    paintArc(BeginX + (16 + 5 + 16) * (Radius + 1) * 2, 200, 10,ctx)   //冒号
+    paintArc(BeginX + (16 + 5 + 16 + 5) * (Radius + 1) * 2, 200, parseInt(sec / 10),ctx)
+    paintArc(BeginX + (16 + 5 + 16 + 5 + 8) * (Radius + 1) * 2, 200, parseInt(sec % 10),ctx)   //秒
 }
 
 function paintArc(x, y, num, ctx) {
@@ -86,6 +123,13 @@ function paintArc(x, y, num, ctx) {
 
         }
     }
+}
+
+function getTimeDistanceSec() {
+
+    var current = new Date()
+    var dist = endDate.getTime() - current.getTime()
+    return dist > 0 ? Math.round(dist / 1000) : 0
 }
 
 
