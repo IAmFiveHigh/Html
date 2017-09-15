@@ -5,7 +5,8 @@
 var Radius = 7
 var BeginX = 20
 
-const endDate = new Date(2017, 8, 16, 0, 0, 0)
+var today = new Date()
+var endDate = new Date(today.getFullYear(), today.getMonth(), today.getDate(), 18, 30, 0)
 
 var curentDistanceSec = 0
 var balls = [];
@@ -120,6 +121,7 @@ function update() {
 
 function updateBalls() {
 
+    console.log(balls.length)
     for (var i=0; i<balls.length; i++) {
         balls[i].x += balls[i].vx
         balls[i].y += balls[i].vy
@@ -129,6 +131,17 @@ function updateBalls() {
             balls[i].y = 768
             balls[i].vy = -balls[i].vy * 0.75
         }
+    }
+
+    var cnt = 0
+    for (var i=0; i<balls.length; i++) {
+        if (balls[i].x + Radius > 0 && balls[i].x - Radius < 1024) {
+            balls[cnt++] = balls[i]
+        }
+    }
+
+    while (balls.length > cnt) {
+        balls.pop()
     }
 }
 
