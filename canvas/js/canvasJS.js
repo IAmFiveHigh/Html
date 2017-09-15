@@ -2,9 +2,25 @@
  * Created by meitiannongzi on 2017/9/14.
  */
 
+Radius = 7
+BeginX = 20
+
+const endDate = new Date(2017, 8, 16, 0, 0, 0)
+
 window.onload = function() {
 
-    addQiQiaoBan()
+    main()
+    console.log(endDate)
+}
+
+function getCanvas() {
+    var canvas = document.getElementById("canvas1")
+    var context = canvas.getContext("2d")
+
+    canvas.width = 1024
+    canvas.height = 768
+
+    return context
 }
 
 function addQiQiaoBan() {
@@ -19,11 +35,7 @@ function addQiQiaoBan() {
         {p: [{x: 80, y: 40}, {x: 80, y: 80}, {x: 40, y: 80}], color: "#f6ca29"}
     ]
 
-    var canvas = document.getElementById("canvas1")
-    var context = canvas.getContext("2d")
-
-    canvas.width = 1024
-    canvas.height = 768
+    var context = getCanvas()
 
     for (var i=0; i<tangram.length; i++) {
         darw(tangram[i], context)
@@ -41,6 +53,39 @@ function darw(piece, ctx) {
     ctx.closePath()
     ctx.fillStyle = piece.color
     ctx.fill()
+}
+
+function main() {
+
+    var context = getCanvas()
+
+    paintArc(BeginX, 200, 0,context)
+    paintArc(BeginX + 8 * (Radius + 1) * 2, 200, 1,context)   //时
+    paintArc(BeginX + 16 * (Radius + 1) * 2, 200, 10,context)   //冒号
+    paintArc(BeginX + (16 + 5) * (Radius + 1) * 2, 200, 3,context)
+    paintArc(BeginX + (16 + 5 + 8) * (Radius + 1) * 2, 200, 5,context)   //分
+    paintArc(BeginX + (16 + 5 + 16) * (Radius + 1) * 2, 200, 10,context)   //冒号
+    paintArc(BeginX + (16 + 5 + 16 + 5) * (Radius + 1) * 2, 200, 4,context)
+    paintArc(BeginX + (16 + 5 + 16 + 5 + 8) * (Radius + 1) * 2, 200, 1,context)   //秒
+}
+
+function paintArc(x, y, num, ctx) {
+
+    for (var i=0; i<digit[num].length; i++) {
+        var row = digit[num][i]
+
+        for (var k=0; k<row.length; k++) {
+
+            if (row[k] === 1) {
+                ctx.beginPath()
+                ctx.fillStyle = "#67becf"
+                ctx.arc(x + k * 2 * (Radius + 1) + (Radius + 1), y + i * 2 * (Radius + 1) + (Radius + 1), Radius, 0, 2 * Math.PI)
+                ctx.closePath()
+                ctx.fill()
+            }
+
+        }
+    }
 }
 
 
