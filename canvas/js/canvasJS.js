@@ -2,18 +2,21 @@
  * Created by meitiannongzi on 2017/9/14.
  */
 
-Radius = 7
-BeginX = 20
+var Radius = 7
+var BeginX = 20
 
 const endDate = new Date(2017, 8, 16, 0, 0, 0)
 
-curentDistanceSec = 0
+var curentDistanceSec = 0
+var balls = [];
+const colors = ["#33B5E5","#0099CC","#AA66CC","#9933CC","#99CC00","#669900","#FFBB33","#FF8800","#FF4444","#CC0000"]
 
 window.onload = function() {
 
     main()
 }
 
+//获取画布
 function getCanvas() {
     var canvas = document.getElementById("canvas1")
     var context = canvas.getContext("2d")
@@ -24,6 +27,7 @@ function getCanvas() {
     return context
 }
 
+//绘制七巧板
 function addQiQiaoBan() {
 
     var tangram = [
@@ -56,6 +60,8 @@ function darw(piece, ctx) {
     ctx.fill()
 }
 
+
+//往下绘制倒计时
 function main() {
 
     var context = getCanvas()
@@ -66,24 +72,84 @@ function main() {
         update()
     }, 50)
 
-
 }
 
 function update() {
 
     var nextShowTimeSeconds = getTimeDistanceSec();
 
-    // var nextHours = parseInt( nextShowTimeSeconds / 3600);
-    // var nextMinutes = parseInt( (nextShowTimeSeconds - nextHours * 3600) / 60 )
+    var nextHours = parseInt( nextShowTimeSeconds / 3600);
+    var nextMinutes = parseInt( (nextShowTimeSeconds - nextHours * 3600) / 60 )
     var nextSeconds = nextShowTimeSeconds % 60
 
-    // var curHours = parseInt( curentDistanceSec / 3600);
-    // var curMinutes = parseInt( (curentDistanceSec - curHours * 3600) / 60 )
+    var curHours = parseInt( curentDistanceSec / 3600);
+    var curMinutes = parseInt( (curentDistanceSec - curHours * 3600) / 60 )
     var curSeconds = curentDistanceSec % 60
 
-    if( nextSeconds != curSeconds ){
+    if( nextSeconds !== curSeconds ){
+
+        if (parseInt(nextHours / 10) !== parseInt(curHours / 10)) {
+            addBalls(BeginX, 200, parseInt(curHours / 10))
+        }
+
+        if (parseInt(nextHours % 10) !== parseInt(curHours % 10)) {
+            addBalls(BeginX + 8 * (Radius + 1) * 2 , 200, parseInt(curHours % 10))
+        }
+
+        if (parseInt(nextMinutes / 10) !== parseInt(curMinutes / 10)) {
+            addBalls(BeginX + (16 + 5) * (Radius + 1) * 2, 200, parseInt(curMinutes / 10))
+        }
+
+        if (parseInt(nextMinutes % 10) !== parseInt(curMinutes % 10)) {
+            addBalls(BeginX + (16 + 5 + 8) * (Radius + 1) * 2, 200, parseInt(curMinutes % 10))
+        }
+
+        if (parseInt(nextSeconds / 10) !== parseInt(curSeconds / 10)) {
+            addBalls(BeginX + (16 + 5 + 16 + 5) * (Radius + 1) * 2, 200, parseInt(curSeconds / 10))
+        }
+
+        if (parseInt(nextSeconds % 10) !== parseInt(curSeconds % 10)) {
+            addBalls(BeginX + (16 + 5 + 16 + 5 + 8) * (Radius + 1) * 2, 200, parseInt(curSeconds % 10))
+        }
 
         curentDistanceSec = nextShowTimeSeconds;
+    }
+    
+    updateBalls()
+}
+
+function updateBalls() {
+
+    for (var i=0; i<balls.length; i++) {
+        balls[i].x += balls[i].vx
+        balls[i].y += balls[i].vy
+        balls[i].vy += balls[i].g
+
+        if (balls[i].y >= 768) {
+            balls[i].y = 768
+            balls[i].vy = -balls[i].vy * 0.75
+        }
+    }
+}
+
+function addBalls(x, y, num) {
+
+    for (var i=0; i<digit[num].length; i++) {
+        for (var j=0; j<digit[num][i].length; j++) {
+            if (digit[num][i][j] === 1) {
+                var aBall = {
+                    x: x + j * 2 * (Radius + 1) + (Radius + 1),
+                    y: y + i * 2 * (Radius + 1) + (Radius + 1),
+                    g: 1.5 + Math.random(),
+                    vx: Math.pow(-1, Math.ceil(Math.random() * 1000)) * 4,
+                    vy: -5,
+                    color: colors[Math.floor(Math.random() * colors.length)]
+                }
+
+                balls.push(aBall)
+            }
+
+        }
     }
 }
 
@@ -104,6 +170,14 @@ function render(ctx) {
     paintArc(BeginX + (16 + 5 + 16) * (Radius + 1) * 2, 200, 10,ctx)   //冒号
     paintArc(BeginX + (16 + 5 + 16 + 5) * (Radius + 1) * 2, 200, parseInt(sec / 10),ctx)
     paintArc(BeginX + (16 + 5 + 16 + 5 + 8) * (Radius + 1) * 2, 200, parseInt(sec % 10),ctx)   //秒
+
+    for (var i=0; i<balls.length; i++) {
+        ctx.fillStyle = balls[i].color
+        ctx.beginPath()
+        ctx.arc(balls[i].x, balls[i].y, Radius, 0, 2 * Math.PI)
+        ctx.closePath()
+        ctx.fill()
+    }
 }
 
 function paintArc(x, y, num, ctx) {
