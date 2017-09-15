@@ -9,3 +9,6 @@
 
 ### TextView
 - 模仿textView
+
+### canvas
+- 学习使用H5的canvas
