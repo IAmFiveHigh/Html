@@ -26,29 +26,30 @@ cat.touchjs = {
     drag: function ($targetObj, callback) {
         touch.on($targetObj, 'drag', function (ev) {
 
-            if (cat.touchjs.left + ev.x < -document.documentElement.clientWidth / 2 && cat.touchjs.top + ev.y < -document.documentElement.clientHeight / 2 ) {
-                $targetObj.css("left", -document.documentElement.clientWidth / 2).css("top", -document.documentElement.clientHeight / 2);
-            }else if(cat.touchjs.left + ev.x < -document.documentElement.clientWidth / 2 && cat.touchjs.top + ev.y > document.documentElement.clientHeight / 2){
-                $targetObj.css("left", -document.documentElement.clientWidth / 2).css("top", document.documentElement.clientHeight / 2);
-            }else if(cat.touchjs.left + ev.x > document.documentElement.clientWidth / 2 && cat.touchjs.top + ev.y < -document.documentElement.clientHeight / 2 ){
-                $targetObj.css("left", document.documentElement.clientWidth / 2).css("top", -document.documentElement.clientHeight / 2);
-            }else if (cat.touchjs.left + ev.x > document.documentElement.clientWidth / 2 && cat.touchjs.top + ev.y > document.documentElement.clientHeight / 2) {
-                $targetObj.css("left", document.documentElement.clientWidth / 2).css("top", document.documentElement.clientHeight / 2);
-            }else {
-                if (cat.touchjs.left + ev.x < -document.documentElement.clientWidth / 2) {
+            var sWidth = document.documentElement.clientWidth / 2 * cat.touchjs.scaleVal
+            var sHeight = document.documentElement.clientHeight / 2 * cat.touchjs.scaleVal
 
-                    $targetObj.css("left", -document.documentElement.clientWidth / 2).css("top", cat.touchjs.top + ev.y);
-                }else if (cat.touchjs.left + ev.x > document.documentElement.clientWidth / 2) {
-                    $targetObj.css("left", document.documentElement.clientWidth / 2).css("top", cat.touchjs.top + ev.y);
-                }else if (cat.touchjs.top + ev.y < -document.documentElement.clientHeight / 2 ) {
-                    $targetObj.css("left", cat.touchjs.left + ev.x).css("top", -document.documentElement.clientHeight / 2);
-                }else if (cat.touchjs.top + ev.y > document.documentElement.clientHeight / 2) {
-                    $targetObj.css("left", cat.touchjs.left + ev.x).css("top", document.documentElement.clientHeight / 2);
+            if (cat.touchjs.left + ev.x <= -sWidth && cat.touchjs.top + ev.y <= -sHeight ) {
+                $targetObj.css("left", -sWidth).css("top", -sHeight);
+            }else if(cat.touchjs.left + ev.x <= -sWidth && cat.touchjs.top + ev.y >= sHeight){
+                $targetObj.css("left", -sWidth).css("top", sHeight);
+            }else if(cat.touchjs.left + ev.x >= sWidth && cat.touchjs.top + ev.y <= -sHeight ){
+                $targetObj.css("left", sWidth).css("top", -sHeight);
+            }else if (cat.touchjs.left + ev.x >= sWidth && cat.touchjs.top + ev.y >= sHeight) {
+                $targetObj.css("left", sWidth).css("top", sHeight);
+            }else {
+                if (cat.touchjs.left + ev.x <= -sWidth) {
+                    $targetObj.css("left", -sWidth).css("top", cat.touchjs.top + ev.y);
+                }else if (cat.touchjs.left + ev.x >= sWidth) {
+                    $targetObj.css("left", sWidth).css("top", cat.touchjs.top + ev.y);
+                }else if (cat.touchjs.top + ev.y <= -sHeight ) {
+                    $targetObj.css("left", cat.touchjs.left + ev.x).css("top", -sHeight);
+                }else if (cat.touchjs.top + ev.y >= sHeight) {
+                    $targetObj.css("left", cat.touchjs.left + ev.x).css("top", sHeight);
                 }else {
                     $targetObj.css("left", cat.touchjs.left + ev.x).css("top", cat.touchjs.top + ev.y);
                 }
             }
-
 
         });
         touch.on($targetObj, 'dragend', function (ev) {
