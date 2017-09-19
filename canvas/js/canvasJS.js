@@ -13,8 +13,12 @@ var balls = [];
 const colors = ["#33B5E5","#0099CC","#AA66CC","#9933CC","#99CC00","#669900","#FFBB33","#FF8800","#FF4444","#CC0000"]
 
 window.onload = function() {
-
-    main()
+    // 倒计时
+    // main()
+    // 七巧板
+    // addQiQiaoBan()
+    // 美国队长盾牌
+    rectShelid()
 }
 
 //获取画布
@@ -217,6 +221,37 @@ function getTimeDistanceSec() {
     var current = new Date()
     var dist = endDate.getTime() - current.getTime()
     return dist > 0 ? Math.round(dist / 1000) : 0
+}
+
+//绘制美国队长盾牌
+
+function rectShelid() {
+
+    var context = getCanvas()
+    drawArc(1024 / 2, 768 / 2, 350, "#dd5870", context)
+    drawArc(1024 / 2, 768 / 2, 300, "#e0dedf", context)
+    drawArc(1024 / 2, 768 / 2, 250, "#dd5870", context)
+    drawArc(1024 / 2, 768 / 2, 200, "#2773d3", context)
+    rectStar(1024 / 2, 768 / 2, 80, 200, 0, "#dedce1", context)
+}
+
+function rectStar(x, y, r, R, changeDeg, fillColor, ctx) {
+
+    ctx.beginPath()
+    for (var i=0; i<5; i++) {
+        ctx.lineTo(Math.cos((18 + i * 72 - changeDeg) / 180 * Math.PI) * R + x, -Math.sin((18 + i * 72 - changeDeg) / 180 * Math.PI) * R + y)
+        ctx.lineTo(Math.cos((54 + i * 72 - changeDeg) / 180 * Math.PI) * r + x, -Math.sin((54 + i * 72 - changeDeg) / 180 * Math.PI) * r + y)
+    }
+    ctx.closePath()
+    ctx.fillStyle = fillColor
+    ctx.fill()
+}
+
+function drawArc(x, y, r, fillColor, ctx) {
+    ctx.beginPath()
+    ctx.arc(x, y, r, 0, Math.PI * 2)
+    ctx.fillStyle = fillColor
+    ctx.fill()
 }
 
 
