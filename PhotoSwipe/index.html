@@ -21,7 +21,9 @@
         #close {
             position: fixed;
             bottom: 0;
-
+            width: 100%;
+            text-align: center;
+            background-color: #000000;
             font-size: 25px;
             color: #FFFFFF;
             z-index: 4;
@@ -111,7 +113,6 @@
         var clientWidth = document.documentElement.clientWidth
         var clientHeight = document.documentElement.clientHeight
 
-        close.style.left = clientWidth / 2 - close.offsetWidth / 2 + "px"
         shadow.style.width = clientWidth + "px"
         shadow.style.height = clientHeight + "px"
 
