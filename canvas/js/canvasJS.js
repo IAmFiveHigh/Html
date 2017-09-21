@@ -14,11 +14,11 @@ const colors = ["#33B5E5","#0099CC","#AA66CC","#9933CC","#99CC00","#669900","#FF
 
 window.onload = function() {
     // 倒计时
-    // main()
+    main()
     // 七巧板
     // addQiQiaoBan()
     // 美国队长盾牌
-    rectShelid()
+    // rectShelid()
 }
 
 //获取画布
@@ -224,7 +224,6 @@ function getTimeDistanceSec() {
 }
 
 //绘制美国队长盾牌
-
 function rectShelid() {
 
     var context = getCanvas()
