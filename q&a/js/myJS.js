@@ -105,23 +105,28 @@ window.onload = function () {
         arr[i] = i
     }
 
+    //获取随机序列
     randomSort(arr, indexArr)
 
-
+    //第一题
     displayQAndA(objects)
-
 
     var btns = document.getElementsByClassName("answer")
     for (var j=0; j<btns.length; j++) {
         btns[j].dataset.selectid = j
         btns[j].onclick = function () {
             index += 1
+            this.className = "answer_error"
             selectArr.push(this.dataset.selectid)
-            displayQAndA(objects)
+
+            setTimeout(function () {
+                displayQAndA(objects)
+            }, 800)
         }
+
     }
 
-
+    //获取正确答案
     var tmpCorrentArr = []
     for (var k=0; k<objects.length; k++) {
 
@@ -133,6 +138,7 @@ window.onload = function () {
         }
     }
 
+    //调整正确答案排序
     for (var m=0; m<indexArr.length; m++) {
         var nIndex = indexArr[m]
         correntArr[m] = tmpCorrentArr[nIndex]
@@ -140,19 +146,21 @@ window.onload = function () {
 }
 
 
-
+//刷新UI
 function displayQAndA(objects) {
 
-    if (index === indexArr.length) {
+    if (index === indexArr.length) { //全部做完
         alert("你选择的" + selectArr + "正确答案" + correntArr)
         return
     }
+
 
     var question = document.getElementById("question")
     question.textContent = objects[indexArr[index]].question
 
     for(var k=0; k<3; k++) {
         var op = document.getElementById("answer_" + k)
+        op.className = "answer"
         op.textContent = objects[indexArr[index]].options[k].title
     }
 
