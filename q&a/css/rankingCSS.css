@@ -1,0 +1,77 @@
+body {
+    margin: 0 auto;
+}
+
+#background {
+
+    margin: 0 auto;
+    display: table;
+    width: 100%;
+}
+
+#title {
+    width: 100%;
+    color: #292f33;
+    font-size: 17px;
+    font-family: "PingFang SC";
+    display: table-row;
+}
+
+#title .block {
+    padding: 15px 0;
+}
+
+.block {
+    border-style: solid;
+    border-color: #dde5eb;
+    border-width: 1px;
+    display: table-cell;
+    text-align: center;
+
+}
+
+span{
+
+    position: relative;
+    top: 7px;
+}
+
+.middle img {
+    width: 36px;
+    height: 36px;
+    float: left;
+    position: relative;
+    left: 20px;
+    border-radius: 18px;
+}
+
+.middle span {
+    left: -10px;
+}
+
+
+
+.rank {
+    width: 100%;
+    color: #292f33;
+
+    font-size: 14px;
+    margin: 0 auto;
+    background-color: #FFFFFF;
+    display: table-row;
+}
+
+
+
+.rank .right {
+    padding: 22px 0;
+}
+
+.rank .middle {
+    padding: 22px 0;
+}
+
+.rank .left {
+    padding: 22px 0;
+}
+
