@@ -1,0 +1,33 @@
+body {
+    margin: 0 auto;
+}
+
+#background {
+
+    margin: 0 auto;
+    width: 100%;
+    background-color: #ffaf5a;
+}
+
+#content {
+
+    margin: 10px 12px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}
+
+#title {
+    text-align: center;
+    font-size: 33px;
+    color: #ffaf5a;
+    padding: 21px 0;
+    font-family: "PingFang SC";
+
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: #a7a6a6;
+}
+
