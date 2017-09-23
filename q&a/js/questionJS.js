@@ -121,7 +121,7 @@ window.onload = function () {
 
             setTimeout(function () {
                 displayQAndA(objects)
-            }, 800)
+            }, 100)
         }
 
     }
@@ -150,7 +150,31 @@ window.onload = function () {
 function displayQAndA(objects) {
 
     if (index === indexArr.length) { //全部做完
-        alert("你选择的" + selectArr + "正确答案" + correntArr)
+
+
+        var correctCount = 0
+        for (var i=0; i<selectArr.length; i++) {
+
+            var select = selectArr[i]
+            console.log("选择了" + select)
+            var correct = correntArr[i]
+            console.log("正确答案" + correct)
+            if (select == correct) {
+                correctCount += 1
+            }
+        }
+
+        var score = correctCount / indexArr.length * 100
+        console.log("得分" + score)
+        console.log("正确数" + correctCount)
+        localStorage.setItem("score", score)
+        localStorage.setItem("name", "name")
+
+        var selectlist = joinStringWithArr(selectArr)
+        var indexlist = joinStringWithArr(indexArr)
+        localStorage.setItem("selectArr",selectlist)
+        localStorage.setItem("indexArr",indexlist)
+        window.location.href = "score.html"
         return
     }
 
@@ -165,6 +189,7 @@ function displayQAndA(objects) {
     }
 
     document.getElementById("progress").textContent = (index + 1) + "/" + objects.length
+
 }
 
 
@@ -180,6 +205,18 @@ function randomSort(arr, newArr) {
     arr.splice(random,1);
     return randomSort(arr, newArr);
 }
+
+function joinStringWithArr(arr) {
+    // if (arr.length == 1) {return arr[0]}
+
+    var newArrString = arr.reduce(function (p1, p2) {
+        return p1 + "," + p2
+    }, "")
+
+    return newArrString
+
+}
+
 
 
 

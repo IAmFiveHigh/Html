@@ -7,11 +7,12 @@ body {
     margin: 0 auto;
     width: 100%;
     background-color: #ffaf5a;
+    padding: 10px 0;
 }
 
 #content {
 
-    margin: 10px 12px;
+    margin: 0 12px;
     background-color: #FFFFFF;
     border-radius: 10px;
 }
@@ -31,3 +32,40 @@ body {
     background-color: #a7a6a6;
 }
 
+.score_Div {
+    padding: 29px 58px;
+    text-align: center;
+}
+
+.score_Div img {
+    float: left;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+}
+
+#name {
+    font-size: 18px;
+    color: #ffaf5a;
+    margin-left: 68px;
+}
+
+#score_title {
+    font-size: 14px;
+    color: #292f33;
+    margin-left: 68px;
+}
+
+#score {
+    font-size: 100px;
+    color: #ffaf5a;
+    text-align: center;
+    font-family: "PingFang SC";
+
+}
+
+#remark {
+    font-size: 14px;
+    color: #525f66;
+    padding: 40px 15px;
+}
