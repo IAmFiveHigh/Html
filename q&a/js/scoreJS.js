@@ -14,6 +14,22 @@ window.onload = function () {
     score.textContent = scoreNum + "分"
     score_title.textContent = "在本次答题中获得" + scoreNum + "分"
 
+    var clientWidth = document.documentElement.clientWidth
+    var clientHeight = document.documentElement.clientHeight
+
+    var content = document.getElementById("content")
+    content.style.position = "absolute"
+    content.style.top = (clientHeight - content.clientHeight) / 2 + "px"
+
+
+    var background = document.getElementById("background")
+    background.style.position = "absolute"
+    background.style.height = clientHeight + "px"
+
+    if (clientWidth >= 500) {
+        background.style.width = 500 + "px"
+        background.style.left = (clientWidth - 500) / 2 + "px"
+    }
 
     document.getElementById("score").onclick = function () {
 

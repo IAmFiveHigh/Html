@@ -1,4 +1,7 @@
 
+var clientWidth = document.documentElement.clientWidth
+var clientHeight = document.documentElement.clientHeight
+
 var data = {
     "message" : "success",
     "objects" : [
@@ -97,6 +100,9 @@ var correntArr = []
 
 window.onload = function () {
 
+
+
+
     var objects = data.objects
 
     var arr = new Array(objects.length)
@@ -143,6 +149,31 @@ window.onload = function () {
         var nIndex = indexArr[m]
         correntArr[m] = tmpCorrentArr[nIndex]
     }
+
+
+    var content = document.getElementById("content")
+
+
+    content.style.position = "absolute"
+    // var contentWidth = content.clientWidth
+    var contentHeight = content.clientHeight
+
+    content.style.top = (clientHeight - contentHeight) / 2 + "px"
+    // content.style.left = (clientWidth - contentWidth) / 2 + "px"
+    content.style.left = "0px"
+    content.style.width = clientWidth - 20 + "px"
+
+    var background = document.getElementById("background")
+    background.style.position = "absolute"
+    background.style.height = clientHeight + "px"
+
+    if (clientWidth >= 500) {
+        background.style.width = 500 + "px"
+        background.style.left = (clientWidth - 500) / 2 + "px"
+    }else {
+        background.style.width = clientWidth + "px"
+
+    }
 }
 
 
@@ -174,6 +205,7 @@ function displayQAndA(objects) {
         var indexlist = joinStringWithArr(indexArr)
         localStorage.setItem("selectArr",selectlist)
         localStorage.setItem("indexArr",indexlist)
+        localStorage.setItem("jsonData",JSON.stringify(data))
         window.location.href = "score.html"
         return
     }
@@ -182,9 +214,9 @@ function displayQAndA(objects) {
     var question = document.getElementById("question")
     question.textContent = objects[indexArr[index]].question
 
-    for(var k=0; k<3; k++) {
+    for(var k=0; k<objects[indexArr[index]].options.length; k++) {
         var op = document.getElementById("answer_" + k)
-        op.className = "answer"
+        op.className = "answer answer_normal"
         op.textContent = objects[indexArr[index]].options[k].title
     }
 

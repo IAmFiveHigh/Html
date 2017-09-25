@@ -1,101 +1,14 @@
 /**
  * Created by meitiannongzi on 2017/9/23.
  */
-var data = {
-    "message" : "success",
-    "objects" : [
-        {
-            "options" : [
-                {
-                    "title" : "曹擦",
-                    "isCorrent" : false
-                },
-                {
-                    "title" : "超人",
-                    "isCorrent" : false
-                },
-                {
-                    "title" : "香港记者",
-                    "isCorrent" : true
-                }
-            ],
-            "question" : "这世界上谁跑的最快？"
-        },
-        {
-            "options" : [
-                {
-                    "title" : "60秒",
-                    "isCorrent" : false
-                },
-                {
-                    "title" : "61秒",
-                    "isCorrent" : true
-                },
-                {
-                    "title" : "59秒",
-                    "isCorrent" : false
-                }
-            ],
-            "question" : "在中国每过一分钟,你的生命就流逝多少秒？"
-        },
-        {
-            "options" : [
-                {
-                    "title" : "亦可赛艇",
-                    "isCorrent" : true
-                },
-                {
-                    "title" : "亦能覆舟",
-                    "isCorrent" : false
-                },
-                {
-                    "title" : "亦能煮粥",
-                    "isCorrent" : false
-                }
-            ],
-            "question" : "水能载舟,下一句是?"
-        },
-        {
-            "options" : [
-                {
-                    "title" : "2",
-                    "isCorrent" : true
-                },
-                {
-                    "title" : "3",
-                    "isCorrent" : false
-                },
-                {
-                    "title" : "4",
-                    "isCorrent" : false
-                }
-            ],
-            "question" : "1 + 1 = ?"
-        },
-        {
-            "options" : [
-                {
-                    "title" : "弗利萨",
-                    "isCorrent" : false
-                },
-                {
-                    "title" : "蓝精灵",
-                    "isCorrent" : true
-                },
-                {
-                    "title" : "不能说的人",
-                    "isCorrent" : false
-                }
-            ],
-            "question" : "在山的那边海的那边有一群?"
-        }
-    ]
-}
+
 
 window.onload = function () {
 
     var selectArr = localStorage.getItem("selectArr")
     var indexlist = localStorage.getItem("indexArr")
+
+    var data = JSON.parse(localStorage.getItem("jsonData"))
 
     var objects = data.objects
 
@@ -113,7 +26,7 @@ window.onload = function () {
 
         var progress = document.createElement("div")
         progress.className = "progressClass"
-        progress.textContent = (i + 1)
+        progress.textContent = "第" + (i + 1) + "题"
         background.appendChild(progress)
 
         var content = document.createElement("div")
@@ -127,19 +40,45 @@ window.onload = function () {
 
         for(var k=0; k<3; k++) {
             var op = document.createElement("div")
+            op.className = "answer"
 
-            if (!objects[index].options[k].isCorrent && selects[i] == k) {
-                op.className = "answer_error"
+            if (selects[i] == k) {
+
+                op.className += " answer_error"
+                var result_correct_img = document.createElement("img")
+                result_correct_img.className = "result_img"
+                op.appendChild(result_correct_img)
+
+                if (!objects[index].options[k].isCorrent) {
+                    result_correct_img.src = "images/error.jpg"
+                }else {
+                    result_correct_img.src = "images/correct.jpg"
+                }
+
             }else {
+                op.className += " answer_normal"
 
                 if (objects[index].options[k].isCorrent) {
-                    op.className = "answer_correct"
+                    var result_error_img = document.createElement("img")
+                    result_error_img.src = "images/correct.jpg"
+                    result_error_img.className = "result_img"
+                    op.appendChild(result_error_img)
+
                 }else {
-                    op.className = "answer"
+
+                    var result_error_img = document.createElement("img")
+                    result_error_img.src = ""
+                    result_error_img.className = "result_img"
+                    op.appendChild(result_error_img)
+
                 }
             }
 
-            op.textContent = objects[index].options[k].title
+            var span_text = document.createElement("span")
+            span_text.textContent = objects[index].options[k].title
+
+            // op.className = "answer"
+            op.appendChild(span_text)
             content.appendChild(op)
         }
 

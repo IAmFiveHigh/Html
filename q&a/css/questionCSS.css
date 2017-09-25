@@ -2,6 +2,10 @@ body {
     margin: 0 auto;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 #background {
 
     margin: 0 auto;
@@ -30,45 +34,52 @@ body {
 #question {
 
     font-size: 20px;
-    height: 200px;
+    /*height: 200px;*/
     width: 100%;
-    margin: 0 12px;
+    margin: 0 8px;
 }
 
 .answer {
 
-    padding: 20px;
+
+}
+
+.answer_normal {
+    background-image: url("../images/question_ct.png");
+    padding: 12px;
     margin: 12px 12px;
     background-size: 100% 100%;
-    background-image: url("../images/question_ct.png");
-
 }
 
 .answer_error {
-    padding: 20px;
+
+    background-image: url("../images/question_error_ct.png");
+    padding: 12px;
     margin: 12px 12px;
     background-size: 100% 100%;
-    background-image: url("../images/question_error_ct.png");
 }
 
 .answer_correct {
-    padding: 20px;
+
+    background-image: url("../images/question_right_ct.png");
+    padding: 12px;
     margin: 12px 12px;
     background-size: 100% 100%;
-    background-image: url("../images/question_right_ct.png");
 }
 
 .answer span {
     margin-left: 20px;
     padding: 50px 12px;
-    font-size: 25px;
+    font-size: 18px;
 }
 
-#footer {
-    background-color: white;
-    margin: 12px;
+.image_answer {
     padding: 12px 0;
-    border-radius: 10px;
-    height: 200px;
-    display: none;
 }
+
+.image_answer span {
+    text-align: center;
+    padding: 15px;
+    width: 100%;
+}
+
