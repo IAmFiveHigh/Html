@@ -115,7 +115,7 @@ window.onload = function () {
     randomSort(arr, indexArr)
 
     //第一题
-    displayQAndA(objects)
+    displayQAndA(objects, "text")
 
     var btns = document.getElementsByClassName("answer")
     for (var j=0; j<btns.length; j++) {
@@ -178,7 +178,7 @@ window.onload = function () {
 
 
 //刷新UI
-function displayQAndA(objects) {
+function displayQAndA(objects, type) {
 
     if (index === indexArr.length) { //全部做完
 
@@ -210,20 +210,65 @@ function displayQAndA(objects) {
         return
     }
 
-
+    //题目
     var question = document.getElementById("question")
     question.textContent = objects[indexArr[index]].question
 
-    for(var k=0; k<objects[indexArr[index]].options.length; k++) {
-        var op = document.getElementById("answer_" + k)
-        op.className = "answer answer_normal"
-        op.textContent = objects[indexArr[index]].options[k].title
-    }
-
+    //题号
     document.getElementById("progress").textContent = (index + 1) + "/" + objects.length
 
-}
+    //清空当前选项
+    var removeQuestions = document.getElementsByClassName("option")
+    var content = document.getElementById("content")
+    for (var j=0; j<removeQuestions.length; j++) {
+        content.removeChild(removeQuestions[j])
+    }
 
+    //根据题类型 创建不同选项
+    if (type === "text") { // 文字选项
+
+        for(var k=0; k<objects[indexArr[index]].options.length; k++) {
+            var op = document.createElement("div")
+            op.className = "answer answer_normal option"
+            op.textContent = objects[indexArr[index]].options[k].title
+            content.appendChild(op)
+
+        }
+    }else { //图片选项
+
+        for(var l=0; l<objects[indexArr[index]].options.length; l++) {
+            var op_img = document.createElement("div")
+            op_img.className = "image_answer option"
+            var op_img_img = document.createElement("img")
+            op_img_img.src = "images/狗.jpg"
+            op_img_img.className = "image_answer_img"
+
+            //获取图片原始大小
+            var natureW = op_img_img.naturalWidth
+            var natureH = op_img_img.naturalHeight
+
+            if (natureW > natureH) {
+
+                op_img_img.style.width = clientWidth - 24 + "px"
+                op_img_img.style.height = "auto"
+            }else {
+
+
+            }
+
+            var op_img_span = document.createElement("span")
+            op_img_span.className = "image_answer_text"
+            op_img_span.textContent = "狗"
+
+            op_img.appendChild(op_img_img)
+            op_img.appendChild(op_img_span)
+
+            content.appendChild(op_img)
+        }
+    }
+
+
+}
 
 //生成随机数字数组
 function randomSort(arr, newArr) {
@@ -238,6 +283,7 @@ function randomSort(arr, newArr) {
     return randomSort(arr, newArr);
 }
 
+//拼接
 function joinStringWithArr(arr) {
     // if (arr.length == 1) {return arr[0]}
 

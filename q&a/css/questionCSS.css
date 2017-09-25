@@ -39,32 +39,27 @@ body {
     margin: 0 8px;
 }
 
-.answer {
 
+.answer {
+    padding: 12px;
+    margin: 12px 12px;
+    background-size: 100% 100%;
 
 }
 
 .answer_normal {
     background-image: url("../images/question_ct.png");
-    padding: 12px;
-    margin: 12px 12px;
-    background-size: 100% 100%;
+
 }
 
 .answer_error {
 
     background-image: url("../images/question_error_ct.png");
-    padding: 12px;
-    margin: 12px 12px;
-    background-size: 100% 100%;
 }
 
 .answer_correct {
 
     background-image: url("../images/question_right_ct.png");
-    padding: 12px;
-    margin: 12px 12px;
-    background-size: 100% 100%;
 }
 
 .answer span {
