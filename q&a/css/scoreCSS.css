@@ -64,8 +64,33 @@ body {
 
 }
 
+#score span {
+
+    font-size: 30px;
+    /*color: #ffaf5a;*/
+
+}
+
 #remark {
-    font-size: 14px;
+    font-size: 15px;
     color: #525f66;
     padding: 40px 15px;
+    text-align: center;
+}
+
+#imaginary_line {
+    width: 100%;
+    height: 1px;
+    background-color: #a7a6a6;
+}
+
+#resultBtn {
+
+    font-size: 20px;
+    color: #292f33;
+    padding: 32px 50px;
+    text-align: center;
+    border-top-style: dashed;
+    border-width: 1px;
+    border-color: #cccccc;
 }

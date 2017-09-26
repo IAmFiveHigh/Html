@@ -50,9 +50,9 @@ window.onload = function () {
                 op.appendChild(result_correct_img)
 
                 if (!objects[index].options[k].isCorrent) {
-                    result_correct_img.src = "images/error.jpg"
+                    result_correct_img.src = "images/矩形-1@2x.png"
                 }else {
-                    result_correct_img.src = "images/correct.jpg"
+                    result_correct_img.src = "images/形状-1@2x.png"
                 }
 
             }else {
@@ -60,16 +60,17 @@ window.onload = function () {
 
                 if (objects[index].options[k].isCorrent) {
                     var result_error_img = document.createElement("img")
-                    result_error_img.src = "images/correct.jpg"
+                    result_error_img.src = "images/形状-1@2x.png"
                     result_error_img.className = "result_img"
                     op.appendChild(result_error_img)
 
                 }else {
 
-                    var result_error_img = document.createElement("img")
-                    result_error_img.src = ""
-                    result_error_img.className = "result_img"
-                    op.appendChild(result_error_img)
+                    var result_hidden_img = document.createElement("img")
+                    // result_hidden_img.src = ""
+                    result_hidden_img.className = "result_img"
+                    result_hidden_img.style.display = "hidden"
+                    op.appendChild(result_hidden_img)
 
                 }
             }
@@ -79,8 +80,16 @@ window.onload = function () {
 
             // op.className = "answer"
             op.appendChild(span_text)
+
+
+
+
             content.appendChild(op)
         }
+        var analysis = document.createElement("div")
+        analysis.textContent = "解析: " + objects[index].analysis
+        analysis.className = "analysis"
+        content.appendChild(analysis)
 
     }
 

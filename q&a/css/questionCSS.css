@@ -36,12 +36,12 @@ body {
     font-size: 20px;
     /*height: 200px;*/
     width: 100%;
-    margin: 0 8px;
+    margin: 0 50px 0 8px;
 }
 
 
 .answer {
-    padding: 12px;
+    padding: 12px 6px;
     margin: 12px 12px;
     background-size: 100% 100%;
 
@@ -63,13 +63,14 @@ body {
 }
 
 .answer span {
-    margin-left: 20px;
-    padding: 50px 12px;
+    margin-left: -6px;
+    padding: 50px 10px;
     font-size: 18px;
 }
 
 .image_answer {
     padding: 12px 0;
+    float: left;
 }
 
 .image_answer span {
