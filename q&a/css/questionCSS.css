@@ -1,5 +1,6 @@
 body {
     margin: 0 auto;
+    background-color: #eeb073;
 }
 
 * {
@@ -9,73 +10,79 @@ body {
 #background {
 
     margin: 0 auto;
-    padding: 12px 0;
-    background-color: #ffaf5a;
+    padding: 23px 0;
+    background-color: #eeb073;
 
 }
 
-#progress {
-    margin-left: 12px;
-    padding: 20px 12px;
+#title {
+    padding: 18px 0;
+    text-align: center;
+    color: #ffffff;
+    background-color: #de473b;
+    font-size: 28px;
 }
 
-#blackHeader {
-    width: 100%;
-    height: 64px;
-}
 
-.content {
-    background-color: white;
-    margin: 12px;
-    padding: 12px 0;
-    border-radius: 10px;
-}
+/*.content {*/
+    /*background-color: white;*/
+    /*margin: 12px;*/
+    /*padding: 12px 0;*/
+    /*border-radius: 10px;*/
+/*}*/
 
 #question {
 
-    font-size: 20px;
-    /*height: 200px;*/
-    width: 100%;
-    margin: 0 50px 0 8px;
+    margin: 23px 16px 23px;
+    background-image: url("../images/黑板@2x.png");
+    background-size: 100% 100%;
+
+    font-size: 17px;
+    color: #ffffff;
+    padding: 25px 36px 130px;
+}
+
+#progress {
+
+    float: right;
+    position: relative;
+    right: 50px;
+    top: -70px;
+
+    color: #fefefe;
+    font-size: 14px;
 }
 
 
 .answer {
-    padding: 12px 6px;
-    margin: 12px 12px;
-    background-size: 100% 100%;
-
+    padding: 10px 15px;
+    margin: 20px 35px;
+    border-color: #f0f0f0;
+    border-width: 1px;
+    border-style: solid;
 }
 
 .answer_normal {
-    background-image: url("../images/question_ct.png");
+
+    color: #ffffff;
 
 }
 
-.answer_error {
+.opAlpha {
+    width: 30px;
+    position: relative;
 
-    background-image: url("../images/question_error_ct.png");
 }
 
-.answer_correct {
-
-    background-image: url("../images/question_right_ct.png");
+.opSpan {
+    margin-left: 30px;
+    position: relative;
+    top: -10px
 }
 
-.answer span {
-    margin-left: -6px;
-    padding: 50px 10px;
-    font-size: 18px;
+.answer_select {
+    color: #000000;
+    background-color: #f0f0f0;
 }
 
-.image_answer {
-    padding: 12px 0;
-    float: left;
-}
-
-.image_answer span {
-    text-align: center;
-    padding: 15px;
-    width: 100%;
-}
 
