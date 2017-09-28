@@ -32,6 +32,14 @@ window.onload = function () {
 
             var op = document.createElement("div")
 
+            if (selects[i] == j) {
+                op.className = "answer answer_select"
+
+            }else {
+                op.className = "answer answer_normal"
+
+            }
+
             var opAlpha = document.createElement("div")
             opAlpha.className = "opAlpha"
             opAlpha.textContent = alphabet[j] + "."
@@ -44,48 +52,33 @@ window.onload = function () {
             background.appendChild(op)
 
             //调整ABCD的位置
-            var opSpanW = opSpan.offsetWidth
-            var opT = op.offsetTop
             var opH = op.offsetHeight
+            var opAlphaH = opAlpha.offsetHeight
+            var opAlphaT = opAlpha.offsetTop
+            var opT = op.offsetTop
+            opAlpha.style.top = (opH - opAlphaH) / 2 - opAlphaT + opT + "px"
 
             if (objects[indexs[i]].COMMENT[j].STATUS == "0") {
-                op.style.paddingBottom = 0
                 var correct = document.createElement("img")
                 correct.src = "images/对@2x.png"
                 correct.className = "rightOrWrong"
-                correct.style.left = opSpanW - 20  + "px"
-                correct.style.top =  - ((op.offsetHeight - 20) / 2 - op.offsetHeight / 2) + "px"
-                op.appendChild(correct)
+                // correct.style.left = opSpanW - 20  + "px"
+                // correct.style.top =  - ((op.offsetHeight - 20) / 2 - op.offsetHeight / 2) + "px"
+                opSpan.appendChild(correct)
             }else {
                 if (selects[i] == j) {
-                    op.style.paddingBottom = 0
                     var error = document.createElement("img")
                     error.src = "images/错@2x.png"
                     error.className = "rightOrWrong"
-                    error.style.left = opSpanW - 20  + "px"
-                    error.style.top = (opH - 20) / 2 + error.offsetTop - opT + "px"
+                    // error.style.left = opSpanW - 20  + "px"
+                    // error.style.top = (opH - 20) / 2 + error.offsetTop - opT + "px"
 
-                    op.appendChild(error)
-                    op.style.paddingBottom = 0
+                    opSpan.appendChild(error)
                 }
             }
-
-            var opAlphaH = opAlpha.offsetHeight
-            var opAlphaT = opAlpha.offsetTop
-            var opSpanH = opSpan.offsetHeight
-            var opSpanT = opSpan.offsetTop
-            opAlpha.style.top = (opH - opAlphaH) / 2 - opAlphaT + opT + "px"
-            opSpan.style.top = (opH - opSpanH) / 2 - opSpanT + opT + "px"
-
-            if (selects[i] == j) {
-                op.className = "answer answer_select"
-
-            }else {
-                op.className = "answer answer_normal"
-
-            }
-
         }
+
+
         if (objects[indexs[i]].MESSAGE != " ") {
             var message = document.createElement("div")
             message.className = "resultMessage"
@@ -97,6 +90,8 @@ window.onload = function () {
         backLine.className = "line"
         background.appendChild(backLine)
     }
+
+
 }
 
 
