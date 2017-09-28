@@ -139,8 +139,17 @@ function displayQAndA(objects, jsonObj) {
 
     //题目
     var question = document.getElementById("question")
+    //清空paddingBottom
+    question.style.paddingBottom = 0
     question.textContent = (index + 1) + "、 " + objects[indexArr[index]].SUBJECT
 
+    var rect = question.getBoundingClientRect()
+    if (rect.height + 60 + 25 < 240) {
+        question.style.paddingBottom = 180 - rect.height + "px"
+    }else {
+        question.style.paddingBottom = 60 + 25 + "px"
+
+    }
     //题号
     document.getElementById("progress").textContent = (index + 1) + "/" + objects.length + "(每题10分)"
 
