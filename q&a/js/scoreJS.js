@@ -8,8 +8,6 @@ window.onload = function () {
     var clientWidth = document.documentElement.clientWidth
     var clientHeight = document.documentElement.clientHeight
 
-    var body = document.body
-    body.style.display = "block"
 
     var photoBackground = document.getElementById("photoBackground")
 
@@ -42,6 +40,7 @@ window.onload = function () {
 
     photoBackground.style.width = maxWidth * 0.85 + "px"
     photoBackground.style.left = maxleft + maxWidth * 0.0725 + "px"
+    photoBackground.style.height = maxWidth * 0.85 * 0.773 + "px"
     photoBackground.style.top = 66 + "px"
 
     photo.style.left = (maxWidth - maxWidth / 4.3) / 2 + maxleft + "px"
@@ -49,7 +48,8 @@ window.onload = function () {
     photo_img.style.height = maxWidth / 4.3 + "px"
     // photo.style.borderRadius = clientWidth / 4.3 / 2 + "px"
 
-    var centerY = (photoBackground.offsetHeight) * 0.56 + photoBackground.offsetTop
+    var centerY = (maxWidth * 0.85 * 0.773) * 0.56 +  66
+    console.log(photoBackground.offsetHeight)
     photo.style.top = centerY - maxWidth / 4.3 / 2 + "px"
 
 
@@ -132,4 +132,5 @@ window.onload = function () {
             document.body.removeChild(this)
         }
     }
+
 }

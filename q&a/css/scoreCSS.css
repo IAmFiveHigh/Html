@@ -1,7 +1,7 @@
 body {
     margin: 0 auto;
     background-image: url("../images/颜色填充-1@2x.png");
-    display: none;
+
 }
 
 #background {
@@ -45,6 +45,10 @@ body {
     position: absolute;
 
     text-align: center;
+}
+
+#photo img {
+    border-radius: 50%;
 }
 
 #QR_code {

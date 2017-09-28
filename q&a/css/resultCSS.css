@@ -52,11 +52,32 @@ body {
 
 .opSpan {
     margin-left: 30px;
+    margin-right: 35px;
     position: relative;
-    top: -10px
 }
 
 .answer_select {
     color: #000000;
     background-color: #f0f0f0;
+}
+
+.resultMessage {
+    font-size: 15px;
+    color: #bb3535;
+    padding: 10px 15px;
+    /*margin: 20px 20px;*/
+
+}
+
+.line {
+    height: 10px;
+    background-color: #e6aa6e;
+    width: 100%;
+
+}
+
+.rightOrWrong {
+    width: 20px;
+    height: 20px;
+    position: relative;
 }
