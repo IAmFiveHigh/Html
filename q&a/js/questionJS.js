@@ -41,7 +41,7 @@ window.onload = function () {
                 randomSort(arr, indexArr)
 
                 //第一题
-                displayQAndA(objects)
+                displayQAndA(objects, jsonOBJ)
 
 
                 //获取正确答案
@@ -62,30 +62,7 @@ window.onload = function () {
                     correntArr[m] = tmpCorrentArr[nIndex]
                 }
 
-                var content = document.getElementById("content")
 
-                content.style.position = "absolute"
-                // var contentWidth = content.clientWidth
-                var contentHeight = content.clientHeight
-
-                content.style.top = (clientHeight - contentHeight) / 2 + "px"
-                // content.style.left = (clientWidth - contentWidth) / 2 + "px"
-                content.style.left = "0px"
-
-                var background = document.getElementById("background")
-                background.style.position = "absolute"
-                background.style.height = clientHeight + "px"
-
-                if (clientWidth >= 500) {
-                    background.style.width = 500 + "px"
-                    background.style.left = (clientWidth - 500) / 2 + "px"
-                    content.style.width = 500 - 20 + "px"
-
-                }else {
-                    background.style.width = clientWidth + "px"
-                    content.style.width = clientWidth - 20 + "px"
-
-                }
             }
         }
     }
@@ -94,7 +71,7 @@ window.onload = function () {
 
 
 //刷新UI
-function displayQAndA(objects) {
+function displayQAndA(objects, jsonObj) {
 
     if (index === indexArr.length) { //全部做完
 
@@ -109,7 +86,42 @@ function displayQAndA(objects) {
             }
         }
 
+        //传结果
+        var result = new Array()
+
+        for (var q=0; q<objects.length; q++) {
+            var wenda = objects[indexArr[q]]
+            var wenda_id = wenda.WENDA_ID
+            var wenda_info_id = wenda.COMMENT[selectArr[q]].WENDA_INFO_ID
+            var nowDate = new Date()
+            var dateStr = nowDate.getFullYear() + "-" + parseInt(nowDate.getMonth() + 1).toString() + "-" + nowDate.getDate() + " " + nowDate.getHours() + ":" + nowDate.getMinutes() + ":" + nowDate.getSeconds()
+            var wendaObject = {"OPENID": "111",
+                               "WENDA_ID": wenda_id,
+                                "WENDA_INFO_ID": wenda_info_id,
+                                "DATE": dateStr}
+            result.push(wendaObject)
+        }
+
+        //得分
         var score = correctCount / indexArr.length * 100
+
+        console.log(result)
+        var requsetResult = new XMLHttpRequest()
+        requsetResult.open("POST", "http://192.168.3.3:8888/under/app/saveWenDa", true)
+        requsetResult.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+
+        requsetResult.send("OPENID=" + "111" + "&object=" + JSON.stringify(result) + "&FRACTION=" + score.toString() + "&data=" + JSON.stringify(jsonObj))
+        requsetResult.onreadystatechange = function() {
+            if (requsetResult.readyState === 4) {
+                if (requsetResult.status === 200) {
+                    var resultt = requsetResult.responseText
+                    var jsonOBJ = JSON.parse(resultt)
+                    console.log(jsonOBJ)
+                }
+            }
+        }
+
+
         console.log("得分" + score + "正确数" + correctCount)
         localStorage.setItem("score", score)
         localStorage.setItem("name", "name")
@@ -119,6 +131,8 @@ function displayQAndA(objects) {
         localStorage.setItem("selectArr",selectlist)
         localStorage.setItem("indexArr",indexlist)
         localStorage.setItem("jsonData",JSON.stringify(objects))
+
+        //跳转
         window.location.href = "score.html"
         return
     }
@@ -137,65 +151,32 @@ function displayQAndA(objects) {
         document.getElementById("background").removeChild(removeQuestions[0])
     }
 
-    //根据题类型 创建不同选项
-    // if (type === "text") { // 文字选项
 
-        for(var k=0; k<objects[indexArr[index]].COMMENT.length; k++) {
-            var op = document.createElement("div")
-            op.className = "answer answer_normal"
 
-            var opAlpha = document.createElement("div")
-            opAlpha.className = "opAlpha"
-            opAlpha.textContent = alphabet[k] + "."
-            op.appendChild(opAlpha)
+    for(var k=0; k<objects[indexArr[index]].COMMENT.length; k++) {
+        var op = document.createElement("div")
+        op.className = "answer answer_normal"
 
-            var opSpan = document.createElement("div")
-            opSpan.className = "opSpan"
-            opSpan.textContent = objects[indexArr[index]].COMMENT[k].MESSAGE
-            op.appendChild(opSpan)
-            document.getElementById("background").appendChild(op)
+        var opAlpha = document.createElement("div")
+        opAlpha.className = "opAlpha"
+        opAlpha.textContent = alphabet[k] + "."
+        op.appendChild(opAlpha)
 
-            //调整ABCD的位置
-            var opH = op.offsetHeight
-            var opAlphaH = opAlpha.offsetHeight
-            var opAlphaT = opAlpha.offsetTop
-            var opT = op.offsetTop
-            opAlpha.style.top = (opH - opAlphaH) / 2 - opAlphaT + opT + "px"
+        var opSpan = document.createElement("div")
+        opSpan.className = "opSpan"
+        opSpan.textContent = objects[indexArr[index]].COMMENT[k].MESSAGE
+        op.appendChild(opSpan)
+        document.getElementById("background").appendChild(op)
 
-        }
-    // }else { //图片选项
+        //调整ABCD的位置
+        var opH = op.offsetHeight
+        var opAlphaH = opAlpha.offsetHeight
+        var opAlphaT = opAlpha.offsetTop
+        var opT = op.offsetTop
+        opAlpha.style.top = (opH - opAlphaH) / 2 - opAlphaT + opT + "px"
 
-        // for(var l=0; l<objects[indexArr[index]].options.length; l++) {
-        //     var op_img = document.createElement("div")
-        //     op_img.className = "image_answer option"
-        //     var op_img_img = document.createElement("img")
-        //     op_img_img.src = "images/横图.jpg"
-        //     op_img_img.className = "image_answer_img"
-        //
-        //     //获取图片原始大小
-        //     var natureW = op_img_img.naturalWidth
-        //     var natureH = op_img_img.naturalHeight
-        //
-        //     if (natureW > natureH) {
-        //
-        //         op_img_img.style.width = clientWidth - 24 + "px"
-        //         op_img_img.style.height = "auto"
-        //     }else {
-        //
-        //         op_img_img.style.width = (clientWidth - 100) / 2 + "px"
-        //
-        //     }
-        //
-        //     var op_img_span = document.createElement("span")
-        //     op_img_span.className = "image_answer_text"
-        //     op_img_span.textContent = "狗"
-        //
-        //     op_img.appendChild(op_img_img)
-        //     op_img.appendChild(op_img_span)
-        //
-        //     content.appendChild(op_img)
-        // }
-    // }
+    }
+
 
     var btns = document.getElementsByClassName("answer")
     for (var m=0; m<btns.length; m++) {
@@ -206,8 +187,8 @@ function displayQAndA(objects) {
             selectArr.push(this.dataset.selectid)
 
             setTimeout(function () {
-                displayQAndA(objects)
-            }, 800)
+                displayQAndA(objects,jsonObj)
+            }, 100)
         }
 
     }
