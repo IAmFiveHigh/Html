@@ -8,26 +8,12 @@ window.onload = function () {
     var clientWidth = document.documentElement.clientWidth
     var clientHeight = document.documentElement.clientHeight
 
-
     var photoBackground = document.getElementById("photoBackground")
 
     var scoreNum = parseInt(localStorage.getItem("score"))
 
     var photo = document.getElementById("photo")
     var photo_img = photo.getElementsByTagName("img")[0]
-
-    if (scoreNum === 100) {
-        photoBackground.src = "images/农资学神100.png"
-    }else if (scoreNum < 100 && scoreNum >= 80) {
-        photoBackground.src = "images/农资学霸80-90.png"
-    }else if (scoreNum < 80 && scoreNum >= 50) {
-        photoBackground.src = "images/农资学徒50-70.png"
-    }else if (scoreNum < 50 && scoreNum >= 20) {
-        photoBackground.src = "images/农资学渣20-40.png"
-    }else if (scoreNum < 20 && scoreNum >=0) {
-        photoBackground.src = "images/农资学残0-10.png"
-    }
-
 
     var maxWidth = 0
     var maxleft = 0
@@ -38,23 +24,46 @@ window.onload = function () {
         maxWidth = clientWidth
     }
 
+    document.getElementById("title").textContent = "你在答题中获得了" + scoreNum + "分"
+
+    var sub_title = document.getElementById("subTitle")
+    sub_title.style.width = maxWidth - 20 * 2 + "px"
+    sub_title.style.left = maxleft + 20 + "px"
+    sub_title.style.top = 86 + "px"
+
+    if (scoreNum === 100) {
+        photoBackground.src = "images/超神农业技术100.png"
+        sub_title.textContent = "通过测试，我对农药已经无所谓不知，属于超神农药技术员孤独求败段位——农药知识就是牛！"
+    }else if (scoreNum < 100 && scoreNum >= 80) {
+        photoBackground.src = "images/高级农业技术员80-90.png"
+        sub_title.textContent = "通过测试，我对杀菌剂、杀虫剂非常熟悉，对除草剂得心应手，已经荣升高级农药技术员段位！"
+    }else if (scoreNum < 80 && scoreNum >= 50) {
+        photoBackground.src = "images/中级农业技术员50-70.png"
+        sub_title.textContent = "我对农药还算了解，具备一个优秀农资经销商的潜力，加把劲你会更加优秀！！！"
+    }else if (scoreNum < 50 && scoreNum >= 20) {
+        photoBackground.src = "images/农业入门新手20-40.png"
+        sub_title.textContent = "分数这么少，是题库出问题了吗？不好意思给朋友看~~~~抓紧时间重新做一遍⋯⋯"
+    }else if (scoreNum < 20 && scoreNum >=0) {
+        photoBackground.src = "images/农资门外汉0-10.png"
+        sub_title.textContent = "农极客的系统崩溃了吗？我为什么只有零分？零分？"
+    }
+
+
     photoBackground.style.width = maxWidth * 0.85 + "px"
     photoBackground.style.left = maxleft + maxWidth * 0.0725 + "px"
     photoBackground.style.height = maxWidth * 0.85 * 0.773 + "px"
-    photoBackground.style.top = 66 + "px"
+
+    var sub_title_bottom = sub_title.offsetTop + sub_title.offsetHeight - 20
+    photoBackground.style.top = sub_title_bottom + "px"
 
     photo.style.left = (maxWidth - maxWidth / 4.3) / 2 + maxleft + "px"
     photo_img.style.width = maxWidth / 4.3 + "px"
     photo_img.style.height = maxWidth / 4.3 + "px"
-    // photo.style.borderRadius = clientWidth / 4.3 / 2 + "px"
 
-    var centerY = (maxWidth * 0.85 * 0.773) * 0.56 +  66
+    var centerY = (maxWidth * 0.85 * 0.773) * 0.56 +  sub_title_bottom
     console.log(photoBackground.offsetHeight)
     photo.style.top = centerY - maxWidth / 4.3 / 2 + "px"
 
-
-    var scoreNum = localStorage.getItem("score")
-    document.getElementById("title").textContent = "恭喜你获得" + parseInt(scoreNum) + "分!"
 
     //二维码
     var qr_code = document.getElementById("QR_code")
