@@ -136,44 +136,40 @@ $.random = function(min,max,locationDeg)
 	}
 
 	var n = Math.floor(Math.random()*(max-min+1)+min);
-    // if(filter != undefined && filter.constructor == Array)
-    // {
-    // 	for(i=filter.length-1;i>-1;i--)
-    // 	{
-    // 		if(n == filter[i])
-    // 		{
-    // 			n = Math.floor(Math.random()*(max-min+1)+min)
-    // 			i = filter.length;
-    // 		}
-    // 	}
-    // }
-	if (Math.floor(Math.random() * 2) == 0) {
-        if (status == "下地") {
+
+	if (Math.floor(Math.random() * 10) < 2) { //百分之20概率
+		return n + -locationDeg + 300
+	}else { //百分之80概率
 
 
-            return n + -locationDeg	+ 240
+		if (Math.floor(Math.random() * 2) == 0) {
+        	if (status == "下地") {
 
-        }else {
+
+           	 return n + -locationDeg	+ 240
+
+        	}else {
 
 
-            return n + -locationDeg	+ 120
+            	return n + -locationDeg	+ 120
 
-        }
-	} else {
+       	 	}
+		} else {
 
-		if (status == "下地") {
+			if (status == "下地") {
 
-			status = "看店"
-            return n + -locationDeg	+ 120
+				status = "看店"
+            	return n + -locationDeg	+ 120
 
-        }else {
+       	 }else {
 
-			status = "下地"
-            return n + -locationDeg	+ 240
+				status = "下地"
+            	return n + -locationDeg	+ 240
 
-        }
+        	}
 
-	}
+		}
+    }
 
 }
 //top、left根据父元素的宽和高计算
