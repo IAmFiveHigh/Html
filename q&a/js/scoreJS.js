@@ -40,10 +40,10 @@ window.onload = function () {
     }else if (scoreNum < 80 && scoreNum >= 50) {
         photoBackground.src = "images/中级农业技术员50-70.png"
         sub_title.textContent = "我对农药还算了解，具备一个优秀农资经销商的潜力，加把劲你会更加优秀！！！"
-    }else if (scoreNum < 50 && scoreNum >= 20) {
+    }else if (scoreNum < 50 && scoreNum >= 10) {
         photoBackground.src = "images/农业入门新手20-40.png"
         sub_title.textContent = "分数这么少，是题库出问题了吗？不好意思给朋友看~~~~抓紧时间重新做一遍⋯⋯"
-    }else if (scoreNum < 20 && scoreNum >=0) {
+    }else if (scoreNum == 0) {
         photoBackground.src = "images/农资门外汉0-10.png"
         sub_title.textContent = "农极客的系统崩溃了吗？我为什么只有零分？零分？"
     }

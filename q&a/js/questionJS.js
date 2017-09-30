@@ -191,13 +191,16 @@ function displayQAndA(objects, jsonObj) {
     for (var m=0; m<btns.length; m++) {
         btns[m].dataset.selectid = m
         btns[m].onclick = function () {
+            for (var w=0; w<btns.length; w++) {
+                btns[w].onclick = function () {}
+            }
             index += 1
             this.className = "answer answer_select"
             selectArr.push(this.dataset.selectid)
 
             setTimeout(function () {
                 displayQAndA(objects,jsonObj)
-            }, 100)
+            }, 500)
         }
 
     }
