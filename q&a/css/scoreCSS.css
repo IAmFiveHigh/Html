@@ -43,10 +43,18 @@ body {
     position: absolute;
 
     text-align: center;
+
+    border-style: solid;
+    border-color: #c2b016;
+    border-width: 1px;
+
+    border-radius: 50%;
+
 }
 
 #photo img {
     border-radius: 50%;
+
 }
 
 #QR_code {

@@ -80,16 +80,20 @@ window.onload = function () {
     var sub_title_bottom = sub_title.offsetTop + sub_title.offsetHeight - 20
     photoBackground.style.top = sub_title_bottom + "px"
 
-    photo.style.left = (maxWidth - maxWidth / 4.3) / 2 + maxleft + "px"
-    photo_img.style.width = maxWidth / 4.3 + "px"
-    photo_img.style.height = maxWidth / 4.3 + "px"
+    photo.style.left = (maxWidth - maxWidth * 0.3) / 2 + maxleft + "px"
+    photo_img.style.width = maxWidth * 0.3 + "px"
+    photo_img.style.height = maxWidth * 0.3 + "px"
+
+    photo.style.width = maxWidth * 0.3 + "px"
+    photo.style.height = maxWidth * 0.3 + "px"
+
 
     var centerY = (maxWidth * 0.85 * 0.773) * 0.56 +  sub_title_bottom
-    photo.style.top = centerY - maxWidth / 4.3 / 2 + "px"
+    photo.style.top = centerY - maxWidth * 0.25 / 2 + "px"
 
     comment.style.top = photoBackground.offsetTop + photoBackground.offsetHeight + 20 + "px"
-    comment.style.left = maxleft + 12 + "px"
-    comment.style.width = clientWidth - 12 * 2 + "px"
+    comment.style.left = maxleft + 18 + "px"
+    comment.style.width = clientWidth - 18 * 2 + "px"
 
     var tmpH = comment.offsetHeight
 
@@ -98,35 +102,17 @@ window.onload = function () {
     //二维码
     var qr_code = document.getElementById("QR_code")
     var qr_code_img = qr_code.getElementsByTagName("img")[0]
-    qr_code_img.style.width = maxWidth / 3.5 + "px"
-    qr_code_img.style.height = maxWidth / 3.5 + "px"
+    qr_code_img.style.width = comment.style.width
+    qr_code_img.style.height =  (clientWidth - 18 * 2) * 0.293 + "px"
 
     qr_code.style.top = tmpT + 20 + "px"
-    qr_code.style.left = maxWidth / 8.1 + maxleft + "px"
+    qr_code.style.left = comment.style.left
 
-
-    //指纹
-    var finger_print = document.getElementById("fingerprint")
-    var finger_print_img = finger_print.getElementsByTagName("img")[0]
-    finger_print_img.style.width = maxWidth / 10 + "px"
-    finger_print_img.style.height = maxWidth / 10 + "px"
-
-    finger_print.style.top = tmpT + 30 + "px"
-    finger_print.style.left = maxWidth / 8.1 + maxWidth / 3.5 + maxWidth / 6.25 + maxleft + "px"
-
-    //提示语
-    var span1 = document.getElementById("span1")
-    span1.style.left = finger_print.style.left
-    span1.style.top = tmpT + 30 + maxWidth / 10 + 15 + "px"
-
-    var span2 = document.getElementById("span2")
-    span2.style.left = finger_print.style.left
-    span2.style.top = tmpT + 30 + maxWidth / 10 + 15 + 19 + "px"
 
     //解析按钮
     var analysis = document.getElementById("analysis_btn")
-    analysis.style.left = qr_code.style.left
-    analysis.style.top = tmpT + maxWidth / 3.5 + 30 + 20 + "px"
+    analysis.style.left = 8 + (clientWidth - 18 * 2) * 0.116 + "px"
+    analysis.style.top = tmpT + (clientWidth - 18 * 2) * 0.293 + 40 + "px"
 
     analysis.onclick = function () {
         window.location.href = "result.html"

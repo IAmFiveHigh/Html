@@ -89,8 +89,13 @@ window.onload = function () {
         var backLine = document.createElement("div")
         backLine.className = "line"
         background.appendChild(backLine)
-    }
 
+
+    }
+    var bottomTitle = document.createElement("div")
+    bottomTitle.textContent = "觉得题目太少，没做够？想刷更多题，可进入农极客植保图谱公众号，点击底部菜单栏“答题”，即可解锁题库。"
+    background.appendChild(bottomTitle)
+    bottomTitle.style.padding = "0 20px"
 
 }
 

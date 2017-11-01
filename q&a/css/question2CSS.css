@@ -1,0 +1,176 @@
+#background {
+    margin: 0 auto;
+}
+
+body {
+    margin: 0 auto;
+    background-image: url("../images/bg.png");
+    background-color: #2EA2E5;
+}
+
+#backAdorn {
+    margin: 0 auto;
+
+    position: absolute;
+    z-index: 1;
+    top: 20px;
+    left: 2%;
+}
+
+#backAdorn img {
+    width: 96%;
+
+}
+
+
+#content {
+    z-index: 2;
+}
+
+#questionIndex img{
+
+    margin-top: 13px;
+    height: 44px;
+
+}
+
+#progress {
+    position: absolute;
+    z-index: 2;
+}
+
+#questionIndex {
+    text-align: center;
+}
+
+#questionBg {
+    position: absolute;
+    width: 84.53%;
+    left: 7.73%;
+    top: 73px;
+    z-index: 1;
+}
+
+#questionTitle {
+
+    position: absolute;
+
+    top: 105px;
+    /*padding: 32px 25px 20px;*/
+    left: 44px;
+    right: 44px;
+    font-size: 15px;
+    color: #333333;
+    z-index: 2;
+}
+
+#answerContent {
+    position: absolute;
+    left: 7.73%;
+    width: 84.53%;
+    font-size: 15px;
+    color: #333333;
+}
+
+.answer {
+    margin: 0;
+    padding: 6px 0;
+}
+
+.optionIMG {
+
+}
+.topIMG {
+    width: 100%;
+    height: 100%;
+
+}
+
+.bottomIMG {
+    width: 100%;
+}
+
+.middleDisSelect {
+
+    background-image: url("../images/未选中/中.png");
+    background-size: 100%;
+    padding: 0 10px;
+    margin: -10px 0 0;
+    /*background-color: #FFFFFF;*/
+}
+
+.middleSelect {
+    background-size: 100%;
+    background-image: url("../images/选中/中.png");
+    padding: 0 10px;
+    margin: -10px 0 0;
+
+}
+
+/*上面是答题界面 下面是解析界面*/
+
+.question {
+    font-size: 15px;
+    color: #333333;
+
+    margin-left: 7.73%;
+    width: 84.53%;
+}
+
+.resultProgress {
+    position: relative;
+    top: 17px;
+    text-align: center;
+
+}
+
+.questionDetail {
+    background-image: url("../images/result2.png");
+    background-size: 100%;
+    margin-top: -4px;
+    padding: 0 25px;
+}
+
+.resultBGTop {
+    width: 100%;
+}
+
+.resultBGBottom {
+    width: 100%;
+}
+
+.questionTitle {
+    margin-bottom: 10px;
+}
+.questionOption {
+    padding: 10px;
+}
+
+.odd {
+    background-color: #EBEBEB;
+}
+
+.even {
+    background-color: #FFFFFF;
+}
+
+.correct {
+    color: #008E3F;
+}
+
+.error {
+    color: #DE473B;
+}
+
+.analysisMessage {
+    padding: 10px;
+}
+
+.rightOrWrong {
+    width: 20px;
+    height: 20px;
+    /*position: relative;*/
+    vertical-align: middle;
+    margin-left: 12px;
+}
+
