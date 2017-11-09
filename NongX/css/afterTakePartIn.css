@@ -17,6 +17,8 @@ body {
 
 }
 
+
+
 #bgIMG {
     /*width: 100%;*/
     height: 100%;
@@ -25,7 +27,7 @@ body {
 
 #hill {
     position: absolute;
-    bottom: 0%;
+    bottom: 0;
     /*width: 100%;*/
     z-index: 2;
 }
@@ -51,11 +53,11 @@ body {
     position: absolute;
     top: 15.3%;
     left: 35px;
-    height: 40vw;
+    height: 150px;
     z-index: 3;
 
     color: #F3EACE;
-    font-size: 5.6vw;
+    font-size: 21px;
 }
 
 #pack {
@@ -63,40 +65,61 @@ body {
 
     position: absolute;
     right: 0;
-    /*top: 15.8%;*/
-    width: 70.2%;
-    /*bottom: 18%;*/
+    height: 67.75%;
 }
 
-textarea {
+#textarea1 {
     position: absolute;
 
     right: 10%;
-    bottom: 34%;
-    width: 50%;
-    height: 25%;
+    top: 34.58%;
+    /*bottom: 39.5%;*/
+    width: 53%;
+    height: 20.5%;
     background-color: #0B58A6;
     border: 1px solid #FFFFFF;
     z-index: 4;
 
-    font-size: 4.2vw;
+    font-size: 18px;
     color: #FFFFFF;
+
+    display: none;
+}
+
+#textarea2 {
+    position: absolute;
+
+    bottom: 39.62%;
+    width: 53%;
+    right: 10%;
+    height: 5.3%;
+    z-index: 5;
+
+    background-color: #0B58A6;
+    border: 1px solid #FFFFFF;
+
+
+
+    font-size: 18px;
+    color: #FFFFFF;
+    display: none;
 }
 
 #area {
     position: absolute;
 
     right: 10%;
-    bottom: 34%;
-    width: 45%;
+    /*bottom: 34%;*/
+    /*width: 45%;*/
     height: 22%;
     background-color: #0B58A6;
     border: 1px solid #FFFFFF;
     z-index: 4;
 
-    font-size: 4.2vw;
+    font-size: 18px;
     color: #FFFFFF;
-    padding: 3.4vw;
+    padding: 2%;
+    margin: 0;
 }
 
 #person {
@@ -104,16 +127,19 @@ textarea {
     position: absolute;
     z-index: 3;
 
-    left: 1.5px;
+    left: 6px;
     bottom: 15%;
     width: 28.13%;
+    opacity: 0;
 
-    animation: personAnima 1.5s;
+    animation: personAnima 1s;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
 }
 
 @keyframes personAnima {
-    from {left: -30%}
-    to {left: 1.5px}
+    from {left: -10px; opacity: 0}
+    to {left: 6px; opacity: 1}
 }
 
 #sun {
@@ -125,11 +151,16 @@ textarea {
     z-index: 1;
 
     animation: sunAnima 1.5s;
+    animation-timing-function: ease-out;
 }
 
 @keyframes sunAnima {
     from {bottom: 20%}
     to {bottom: 33%}
+
+    /*0% {bottom: 20%}*/
+    /*80% {bottom: 32%}*/
+    /*100% {bottom: 33%}*/
 }
 
 
@@ -142,7 +173,7 @@ textarea {
 }
 
 #vote img {
-    padding: 9.5px;
+    padding: 9px;
     width: 34.67%;
 }
 
@@ -157,9 +188,89 @@ textarea {
     background-color: #39424B; /* Green */
     border: solid 1px #5C636A;
     color: white;
-    padding: 15px 20px;
+    padding: 15px 18px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 4vw;
+    font-size: 15px;
+}
+
+/*二维码*/
+#qr_code {
+    position: absolute;
+    z-index: 6;
+
+    border-radius: 10px;
+
+    background-color: #EBEBEB;
+    font-size: 16px;
+
+    left: 5.3%;
+    top: 9.3%;
+    /*height: 73vw;*/
+    width: 89.3%;
+    text-align: center;
+
+    display: none;
+    padding-bottom: 20px;
+}
+
+#qr_code_img {
+    margin: 0 auto;
+    padding: 100px 60px 60px;
+    width: 46%;
+}
+
+#close {
+    position: absolute;
+    z-index: 7;
+
+    right: 4%;
+    top: 5%;
+    width: 7%;
+}
+
+/*农拾详情*/
+
+#ex_content {
+    position: absolute;
+    width: 100%;
+    display: none;
+}
+
+#content {
+    position: absolute;
+    z-index: 6;
+
+    width: 89.3%;
+    left: 5.35%;
+    top: 32.5px;
+
+    overflow: scroll;
+
+    border-radius: 10px;
+}
+
+#content img {
+    width: 100%;
+}
+
+#close_content {
+    position: absolute;
+    z-index: 7;
+
+    right: 10%;
+    top: 35px;
+    width: 7%;
+}
+
+/*阴影*/
+#shadow {
+    z-index: 5;
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #000000;
+    opacity: 0.4;
 }
