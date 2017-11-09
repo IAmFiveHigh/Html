@@ -38,10 +38,10 @@ $(function () {
     var area = $("#area")
 
     if (maxWidth / screenHeight > 0.65) {
-        pack.css("height", screenHeight * 0.6775)
+        pack.css("height", screenHeight * 0.65)
         // area.css("width", )
     }else {
-        pack.css("width", maxWidth * 0.72)
+        pack.css("width", maxWidth * 0.70)
     }
     pack.css("bottom", (screenHeight - voteTop) / screenHeight * 100 + "%")
     area.css("top", pack.offset().top + screenHeight * 0.189).css("width", maxWidth * 0.5).css("left", pack.offset().right - maxWidth / 10)
@@ -59,20 +59,20 @@ $(function () {
             opacity: 0
         }, 800)
 
-        $("#area").delay(800).hide().css("left", maxWidth * 0.47 / 2 + "px")
+        $("#area").delay(800).hide().css("right", maxWidth * 0.25 + "px")
         $("#pack").delay(800).animate({
-            left: maxWidth * 0.28 / 2 + "px"
+            left: maxWidth * 0.30 / 2 + "px"
 
         },800)
 
         $("#textarea1").delay(800).show()
         $("#textarea1").animate({
-            left: maxWidth * 0.47 / 2 + "px"
+            right: maxWidth * 0.25 + "px"
         }, 800)
 
         $("#textarea2").delay(800).show()
         $("#textarea2").animate({
-            left: maxWidth * 0.47 / 2 + "px"
+            right: maxWidth * 0.25 + "px"
         }, 800)
 
         $(this).delay(800).click(function () {

@@ -1,6 +1,6 @@
 body {
     margin: 0 auto;
-
+    /*position: absolute;*/
 }
 
 #background {
@@ -247,6 +247,7 @@ body {
     top: 32.5px;
 
     overflow: scroll;
+    -webkit-overflow-scrolling : touch;
 
     border-radius: 10px;
 }
