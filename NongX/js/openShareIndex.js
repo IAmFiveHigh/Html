@@ -1,7 +1,6 @@
 /**
- * Created by meitiannongzi on 2017/11/8.
+ * Created by meitiannongzi on 2017/11/10.
  */
-
 var screenWidth = document.body.scrollWidth
 var screenHeight = document.body.scrollHeight
 
@@ -9,14 +8,9 @@ var maxLeft = screenWidth > 500 ? (screenWidth - 500) / 2 : 0
 var maxWidth = screenWidth > 500 ? 500 : screenWidth
 $(function () {
 
-    var showType = 0 //0： 详情 1：二维码
-
-    console.log(screenWidth)
-    console.log(screenHeight)
-    //设置背景 宽高
 
 
-
+    //old
     var background = $("#background")
     //设置光亮背景和山
     var bgIMG = $("#bgIMG")
@@ -25,8 +19,6 @@ $(function () {
     background.css("width", maxWidth).css("height", screenHeight).css("left", maxLeft + "px")
     bgIMG.css("width", maxWidth)
     hill.css("width", maxWidth)
-
-    $("#textarea1").hide()
 
     //我要代言按钮
     var vote = $("#vote")
@@ -43,55 +35,28 @@ $(function () {
         pack.css("width", maxWidth * 0.70)
     }
     pack.css("bottom", screenHeight * 0.067 + 9 * 2 + 50)
-    area.css("top", pack.offset().top + screenHeight * 0.189).css("width", maxWidth * 0.5).css("left", pack.offset().right - maxWidth / 10)
+
+    var photo = $("#photo")
+
+    var like = $("#like")
+    var likeNumber = $("#like_number")
+
+    photo.css("width", screenWidth * 0.1067)
+
+    like.css("width", screenWidth * 0.0427)
+    likeNumber.css("top", screenHeight * 0.1125).css("left", screenWidth * 0.4)
+
+    var breakLine = $("#break_line")
+    breakLine.css("top", likeNumber.offset().top + 32)
+
+    $("#top_bg").css("height", breakLine.offset().top)
+    background.css("top", breakLine.offset().top)
 
 
-
-
-    var voteBtn = $("#vote>img:first")
-
-    voteBtn.click(function () {
-
-        $(this).attr("src","images/发布我的代言.png")
-        $("#person").fadeOut()
-        $("#vertical_word").animate({
-            opacity: 0
-        }, 800)
-
-        $("#area").delay(800).hide().css("right", maxWidth * 0.25 + "px")
-        $("#pack").delay(800).animate({
-            left: maxWidth * 0.30 / 2 + "px"
-
-        },800)
-
-        $("#textarea1").delay(800).show()
-        $("#textarea1").animate({
-            right: maxWidth * 0.25 + "px"
-        }, 800)
-
-        $("#textarea2").delay(800).show()
-        $("#textarea2").animate({
-            right: maxWidth * 0.25 + "px"
-        }, 800)
-
-        $(this).delay(800).click(function () {
-
-            if ($("#textarea1").val() == "" ) {
-                alert("请输入代言内容")
-                return
-            }
-
-            if ($("#textarea2").val() == "") {
-                alert("请输入姓名")
-                return
-            }
-
-            $("#qr_code").show()
-            shadowShow(1)
-
-            $(this).click(function () {})
-        })
-    })
+    $("#vertical_word").css("top", screenHeight * 0.153 + breakLine.offset().top + 1)
+    $("#top_left_img").css("top", breakLine.offset().top + 20)
+    $("#top_right_img").css("top", breakLine.offset().top + 35)
+    area.css("top", pack.offset().top + screenHeight * 0.189 ).css("width", maxWidth * 0.5).css("left", pack.offset().right - maxWidth / 10)
 
     $("#close").click(function () {
         $("#qr_code").hide()
@@ -124,6 +89,18 @@ $(function () {
     //底部三等分按钮
     $("#tab_bar>button").css("width", maxWidth / 3 - 3)
 
+
+    //new 点击事件
+
+    //投她一票
+    $("#vote_him_btn").click(function () {
+
+    })
+
+    //我也要代言
+    $("#vote_me_btn").click(function () {
+
+    })
 })
 
 function shadowShow(type) {

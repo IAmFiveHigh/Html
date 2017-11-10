@@ -1,6 +1,7 @@
 body {
     margin: 0 auto;
     /*position: absolute;*/
+    /*background-color: #D96A55;*/
 }
 
 #background {
@@ -274,4 +275,47 @@ body {
     top: 0;
     background-color: #000000;
     opacity: 0.4;
+}
+
+/*分享点击*/
+
+.second_floor {
+    position: absolute;
+    z-index: 2;
+}
+
+#photo {
+    /*top: 30px;*/
+    /*left: 26.67%;*/
+
+    border-radius: 50%;
+
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+#name {
+    color: #FFFFFF;
+    font-size: 18px;
+
+    top:30px;
+    left: 26.67%;
+}
+
+#like {
+
+    vertical-align: top;
+    margin-right: 10px;
+}
+
+#like_number {
+
+    font-size: 16px;
+    color: #FFFFFF;
+
+
+}
+
+#break_line {
+    width: 100%;
 }
