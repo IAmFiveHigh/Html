@@ -1,14 +1,14 @@
 /**
  * Created by meitiannongzi on 2017/11/10.
  */
-var screenWidth = document.body.scrollWidth
+var screenWidth = document.body.clientWidth
 var screenHeight = document.body.scrollHeight
 
 var maxLeft = screenWidth > 500 ? (screenWidth - 500) / 2 : 0
 var maxWidth = screenWidth > 500 ? 500 : screenWidth
 $(function () {
 
-
+    console.log(screenWidth)
 
     //old
     var background = $("#background")
@@ -28,12 +28,7 @@ $(function () {
     var pack = $("#pack")
     var area = $("#area")
 
-    if (maxWidth / screenHeight > 0.65) {
-        pack.css("height", screenHeight * 0.65)
-        // area.css("width", )
-    }else {
-        pack.css("width", maxWidth * 0.70)
-    }
+
     pack.css("bottom", screenHeight * 0.067 + 9 * 2 + 50)
 
     var photo = $("#photo")
@@ -41,7 +36,6 @@ $(function () {
     var like = $("#like")
     var likeNumber = $("#like_number")
 
-    photo.css("width", screenWidth * 0.1067)
 
     like.css("width", screenWidth * 0.0427)
     likeNumber.css("top", screenHeight * 0.1125).css("left", screenWidth * 0.4)
@@ -50,13 +44,12 @@ $(function () {
     breakLine.css("top", likeNumber.offset().top + 32)
 
     $("#top_bg").css("height", breakLine.offset().top)
-    background.css("top", breakLine.offset().top)
+    // background.css("top", breakLine.offset().top)
 
-
-    $("#vertical_word").css("top", screenHeight * 0.153 + breakLine.offset().top + 1)
-    $("#top_left_img").css("top", breakLine.offset().top + 20)
-    $("#top_right_img").css("top", breakLine.offset().top + 35)
-    area.css("top", pack.offset().top + screenHeight * 0.189 ).css("width", maxWidth * 0.5).css("left", pack.offset().right - maxWidth / 10)
+    $("#bottom_bg").css("top", breakLine.offset().top).css("height", screenHeight)
+    // $("#top_left_img").css("top", breakLine.offset().top + 20)
+    // $("#top_right_img").css("top", breakLine.offset().top + 35)
+    // area.css("top", pack.offset().top + screenHeight * 0.189 ).css("width", maxWidth * 0.5).css("left", pack.offset().right - maxWidth / 10)
 
     $("#close").click(function () {
         $("#qr_code").hide()

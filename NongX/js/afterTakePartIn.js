@@ -2,7 +2,7 @@
  * Created by meitiannongzi on 2017/11/8.
  */
 
-var screenWidth = document.body.scrollWidth
+var screenWidth = document.body.clientWidth
 var screenHeight = document.body.scrollHeight
 
 var maxLeft = screenWidth > 500 ? (screenWidth - 500) / 2 : 0
@@ -34,19 +34,8 @@ $(function () {
     //调整包装位置
     //修改area
     var pack = $("#pack")
-    var area = $("#area")
 
-    if (maxWidth / screenHeight > 0.65) {
-        pack.css("height", screenHeight * 0.65)
-        // area.css("width", )
-    }else {
-        pack.css("width", maxWidth * 0.70)
-    }
     pack.css("bottom", screenHeight * 0.067 + 9 * 2 + 50)
-    area.css("top", pack.offset().top + screenHeight * 0.189).css("width", maxWidth * 0.5).css("left", pack.offset().right - maxWidth / 10)
-
-
-
 
     var voteBtn = $("#vote>img:first")
 
@@ -58,21 +47,17 @@ $(function () {
             opacity: 0
         }, 800)
 
-        $("#area").delay(800).hide().css("right", maxWidth * 0.25 + "px")
+        $("#area").delay(800).hide()
         $("#pack").delay(800).animate({
-            left: maxWidth * 0.30 / 2 + "px"
+            left: maxWidth * (1 - 0.46267) / 2 + "px"
 
         },800)
 
         $("#textarea1").delay(800).show()
-        $("#textarea1").animate({
-            right: maxWidth * 0.25 + "px"
-        }, 800)
+
 
         $("#textarea2").delay(800).show()
-        $("#textarea2").animate({
-            right: maxWidth * 0.25 + "px"
-        }, 800)
+
 
         $(this).delay(800).click(function () {
 
@@ -90,6 +75,7 @@ $(function () {
             shadowShow(1)
 
             $(this).click(function () {})
+            $("#introduce_text>b").text("我的代言词")
         })
     })
 
@@ -122,7 +108,7 @@ $(function () {
     $("#shadow").css("width", screenWidth).css("height", screenHeight)
 
     //底部三等分按钮
-    $("#tab_bar>button").css("width", maxWidth / 3 - 3)
+    // $("#tab_bar>button").css("width", maxWidth / 3 - 3)
 
 })
 
