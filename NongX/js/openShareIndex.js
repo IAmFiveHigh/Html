@@ -1,6 +1,7 @@
 /**
  * Created by meitiannongzi on 2017/11/10.
  */
+
 var screenWidth = document.body.clientWidth
 var screenHeight = document.body.scrollHeight
 

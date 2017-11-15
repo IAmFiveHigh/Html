@@ -73,6 +73,7 @@ $(function () {
 
             $("#qr_code").show()
             shadowShow(1)
+            $("#introduce_text").prepend("<img src='images/微信图片_20170927114033@2x.png'>")
 
             $(this).click(function () {})
             $("#introduce_text>b").text("我的代言词")

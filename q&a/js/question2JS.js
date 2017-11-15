@@ -478,12 +478,14 @@ function displayQAndA(objects, jsonObj) {
             this.getElementsByClassName("topIMG")[0].src = "images/选中/上.png"
             this.getElementsByClassName("bottomIMG")[0].src = "images/选中/下.png"
 
-
+            var fade = new Fade()
+            fade.hide(document.getElementById("questionTitle"))
 
             selectArr.push(this.dataset.selectid)
 
             setTimeout(function () {
                 displayQAndA(objects,jsonObj)
+                fade.show(document.getElementById("questionTitle"))
             }, 500)
         }
 
@@ -515,6 +517,46 @@ function joinStringWithArr(arr) {
 
     return newArrString
 
+}
+
+var Fadeflag = true;
+function Fade() {
+    /**
+     * 淡入效果
+     * @param {Object} obj
+     */
+    this.show = function(obj) {
+        var num = 0;
+        if (Fadeflag) {
+            var st = setInterval(function(){
+                num++;
+                Fadeflag = false;
+                obj.style.opacity = num/10;
+                if (num>=10) {
+                    clearInterval(st);
+                    Fadeflag = true;
+                }
+            },30);
+        }
+    }
+    /**
+     * 淡出效果
+     * @param {Object} obj
+     */
+    this.hide = function(obj) {
+        var num = 10;
+        if (Fadeflag) {
+            var st = setInterval(function(){
+                num--;
+                Fadeflag = false;
+                obj.style.opacity = num/10;
+                if (num<=0) {
+                    clearInterval(st);
+                    Fadeflag = true;
+                }
+            },30);
+        }
+    }
 }
 
 

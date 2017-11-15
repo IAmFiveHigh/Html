@@ -61,15 +61,27 @@ body {
      font-size: 21px;
 }
 
-#introduce_text b{
-    color: #FFFFFF;
+#introduce_text {
     text-align: center;
     position: absolute;
-    font-size: 18px;
-
-    top: 17.9%;
+    top: 15.8%;
     width: 100%;
     z-index: 3;
+}
+
+#introduce_text b {
+    color: #FFFFFF;
+
+    font-size: 18px;
+
+}
+
+#introduce_text img {
+    width: 11.33%;
+    border-radius: 50%;
+
+    vertical-align: middle;
+    margin-right: 10px;
 }
 
 #pack {
