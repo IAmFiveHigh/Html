@@ -15,6 +15,7 @@
 }
 body
 {
+	width: 100%;
 	position:absolute;
 }
 #active
@@ -45,24 +46,50 @@ body
 }
 
 #bottomText {
-	font-size: 20px;
-	color: #353535;
-	text-align: center;
-	position: absolute;
+	font-size: 15px;
+	color: #333333;
+	bottom: 5.8%;
+	margin: 0 12px 0 12px;
+	/*text-align: center;*/
+	position: fixed;
 }
 
-#title {
+.alert {
+	display: none;
 	position: absolute;
+	width: 65.067%;
+	left: 17.4665%;
+	vertical-align: middle;
+
 }
+
+#thank {
+	z-index: 3;
+
+}
+
+#award {
+	z-index: 3;
+	top: -500px;
+}
+
+#bottomText strong {
+	font-family: "PingFang SC";
+}
+
+
 </style>	
 </head>
-<body style="background-image: url('images/颜色填充.png')">
-	<img src="images/logo144@2x.png" id="title">
+<body style="background-color: #ffb487">
+
 	<div id="active">
-		<div id="dial"><img src="images\lanren.png"/></div>
-		<div id="arrow"><img src="images\arrow.png"/></div>
+		<div id="dial"><img src="images\转盘.png"/></div>
+		<div id="arrow"><img src="images\抽奖.png"/></div>
 	</div>
-	<div id="bottomText">由农极客植保图谱制作</div>
+	<div id="bottomText"><strong>活动规则:</strong><br>由农极客植保图谱制作</div>
+
+	<img src="images/红包.png" id="award" class="alert">
+	<img src="images/谢谢参与.png" id="thank" class="alert">
 </body>              
 </html>                  
                          

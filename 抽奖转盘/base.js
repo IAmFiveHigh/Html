@@ -11,13 +11,7 @@ $(function()
 		$active = $("#active"),
 		$dial = $("#dial"),
 		rounds = 5*360;	//基础圈数
-	// $arrow.centerPos();//使元素水平垂直居中、centerPos是自定义函数
-	// $active.centerPos();
-	// window.onresize = function()
-	// {
-	// 	$arrow.centerPos();
-	// 	$active.centerPos();
-	// }
+
     var maxWidth = 0
     var maxleft = 0
     if (clientWidth >= 500) {
@@ -29,41 +23,36 @@ $(function()
 
     var dial = document.getElementById("dial").getElementsByTagName("img")[0]
     var active = document.getElementById("active")
-    dial.style.width = maxWidth - 40 + "px"
-    dial.style.height = maxWidth - 40 + "px"
-    active.style.width = maxWidth - 40 + "px"
-    active.style.height = maxWidth - 40 + "px"
-    active.style.top = (clientHeight -  maxWidth - 40) / 2 + "px"
-    active.style.left = 20 + maxleft + "px"
+    dial.style.width = maxWidth - 20 + "px"
+    dial.style.height = maxWidth - 20 + "px"
+    active.style.width = maxWidth - 20 + "px"
+    active.style.height = maxWidth - 20 + "px"
+    active.style.top = (clientHeight -  maxWidth - 20) / 2 + "px"
+    active.style.left = 10 + maxleft + "px"
 
     var arrow = document.getElementById("arrow")
 
     var arrow_img = arrow.getElementsByTagName("img")[0]
-    arrow_img.style.width = (maxWidth - 40) / 2 + "px"
-    arrow_img.style.height = (maxWidth - 40) / 2 + "px"
-    arrow.style.top = (maxWidth - 40) / 4 + "px"
-    arrow.style.left =  (maxWidth - 40) / 4 + "px"
+    arrow_img.style.width = (maxWidth - 20) * 0.296875 * 0.8636 + "px"
+    arrow_img.style.height = (maxWidth - 20) * 0.296875  + "px"
+    arrow.style.top = (maxWidth - 20) * 0.296875 + 10 + "px"
+    arrow.style.left = ((maxWidth - 20) - (maxWidth - 20) * 0.296875 * 0.8636) / 2 + "px"
 
-    var title_img = document.getElementById("title")
-    title_img.style.width = maxWidth + "px"
-    title_img.style.height = maxWidth / 6.25 + "px"
-    title_img.style.left = maxleft + "px"
+	$("#award").css("height", maxWidth * 0.79733)
+	$("#thank").css("height", maxWidth * 0.41067).css("top", (clientHeight - maxWidth * 0.41067) / 2)
 
-    var bottom_text = document.getElementById("bottomText")
-    bottom_text.style.top = (clientHeight -  maxWidth - 40) / 2 + maxWidth - 40 + 20 + "px"
-    bottom_text.style.width = maxWidth + "px"
-    bottom_text.style.left = maxleft +
     $arrow.click(function()
 	{
 		if($arrow.data("ding")) return;//如果#arrow正在转动，不向下执行
 		$arrow.data("ding", true);//true表示转动，false表示已停止
-		var deg = $.random(0,30,locationDeg);//产生一个>=0&&<=360的数
+		var deg = $.random();//产生一个>=0&&<=360的数
+		console.log(deg)
 		locationDeg = deg % 30
 
 		$arrow.data("deg",deg % 360);
 		$dial.css({
 			transform:"rotate("+(rounds+deg)+"deg)",
-			transition:"3s",
+			transition:"1s",
 		});
 		
 	})
@@ -85,7 +74,22 @@ $(function()
 			*/
 		});
 		var award = getAward();
-		console.log(award)
+
+		$arrow.unbind("click")
+		//点击事件结果
+		if (award === "随机红包") {
+
+
+			// $("body").append('<img src="images/红包.png" id="award" class="alert">')
+			$("#award").delay(2000).show().animate({
+				top: (clientHeight - maxWidth * 0.79733) / 2 + "px"
+			})
+
+		}else {
+
+            // $("body").append('<img src="images/谢谢参与.png" id="thank" class="alert">')
+			$("#thank").delay(2000).show()
+		}
 	})
 	function getAward()
 	{
@@ -94,81 +98,53 @@ $(function()
 		/*
 			有指针的哪个图片初始方向相对于圆盘往右偏了2度...
 		*/
-		if ((deg >= 332 && deg <= 360) || (deg > 0 && deg < 32)) 
+		if ((deg >= 315 && deg <= 360))
 		{ 
-			return "泡温泉";
+			return "谢谢参与";
 		}
-		else if ((deg >= 32 && deg < 92)) 
+		else if ((deg >= 0 && deg < 45))
 		{
-			return "三亚";
+			return "小礼包";
 		}
-		else if (deg >= 92 && deg < 152) 
+		else if (deg >= 45 && deg < 90)
 		{			
-			return "下地";
+			return "大礼包";
 		}
-		else if (deg >= 152 && deg < 212) 
+		else if (deg >= 90 && deg < 135)
 		{
-			return "新马泰";
+			return "小礼包";
 		}
-		else if (deg >= 212 && deg < 272)
+		else if (deg >= 135 && deg < 180)
 		{
-			return "看店";
+			return "随机红包";
 		} 
-		else if (deg >= 272 && deg < 332) 
+		else if (deg >= 180 && deg < 225)
 		{
-			return "北京";
+			return "谢谢参与";
 		}
+        else if (deg >= 225 && deg < 270)
+        {
+            return "大礼包";
+        }
+        else if (deg >= 270 && deg < 315)
+        {
+            return "随机红包";
+        }
 	}
 });
-$.random = function(min,max,locationDeg)
+$.random = function()
 {
 
-	if (isFirst) {
-		isFirst = false
-		if(Math.floor(Math.random() * 2) == 0){
+	var n = Math.floor(Math.random() * 45);
 
-			status = "看店"
-			return 120 + 10
-		}else {
-			status = "下地"
-            return 240 + 10
-		}
-	}
+	if (Math.floor(Math.random() * 100) < 5) { //百分之5概率
 
-	var n = Math.floor(Math.random()*(max-min+1)+min);
-
-	if (Math.floor(Math.random() * 10) < 2) { //百分之20概率
-		return n + -locationDeg + 300
-	}else { //百分之80概率
+		return Math.random() * 2 > 1 ? n + 270 : n + 135
+	}else { //百分之95概率
 
 
-		if (Math.floor(Math.random() * 2) == 0) {
-        	if (status == "下地") {
+        return Math.random() * 2 > 1 ? n + 315 : n + 180
 
-
-           	 return n + -locationDeg	+ 240
-
-        	}else {
-
-
-            	return n + -locationDeg	+ 120
-
-       	 	}
-		} else {
-
-			if (status == "下地") {
-
-				status = "看店"
-            	return n + -locationDeg	+ 120
-
-       	 }else {
-
-				status = "下地"
-            	return n + -locationDeg	+ 240
-
-        	}
-
-		}
     }
 
 }
