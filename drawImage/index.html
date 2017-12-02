@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvasDrawImage</title>
+</head>
+<body>
+
+<p>要使用的图片:</p>
+<img id="scream" src="1.jpg">
+<p>画布:</p>
+<canvas id="myCanvas" style="border:1px solid #d3d3d3;">
+    您的浏览器不支持 HTML5 canvas 标签。
+</canvas>
+<script>
+    var image = new Image
+    image.src = "1.jpg"
+    image.onload = function () {
+        var c=document.getElementById("myCanvas");
+        var ctx=c.getContext("2d");
+        c.width = image.height
+        c.height = image.width
+
+        ctx.translate(image.width / 2, image.height / 2)
+        ctx.rotate(90 * Math.PI / 180)
+        ctx.translate(-image.width / 2, -image.height / 2)
+
+        var img=document.getElementById("scream");
+
+        ctx.translate((image.width - image.height) / 2, (image.width - image.height) / 2)
+
+        ctx.drawImage(img, 0, 0, image.width, image.height);
+
+    }
+//(image.width - image.height) / 2
+//-(image.width - image.height) / 2
+
+</script>
+</body>
+</html>
